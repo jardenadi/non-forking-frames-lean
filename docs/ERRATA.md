@@ -273,7 +273,7 @@ and the entry is listed in the table at the end of this file.
   class A.)
 * **The formalization.** It has not yet been changed to follow this correction: it still encodes
   Definition 2.6.5 as originally written, and states Theorem 2.6.8(1) under (full) local character
-  instead of weak local character. See NOTES.md, section C.
+  instead of weak local character.
 * **Status of confirmation.** Confirmed by the author from his own understanding, not checked
   against other sources. In the author's words: "Confirmed by the author on the basis of his own
   understanding of what the definition should say. NOT checked against other papers related to
@@ -306,7 +306,7 @@ and the entry is listed in the table at the end of this file.
 * **The formalization.** It includes continuity, but its statement of (c) is weaker than the
   corrected text: it asserts $\prec^+_{\lambda^+}$ only between consecutive models. This is a
   difference between the formalization and the paper, not a reading of the paper. The Lean
-  statement has not been changed (see NOTES.md, section F).
+  statement has not been changed (see B.10).
 * **Status of confirmation.** Confirmed by the author, and cross-checked against
   [Sh:600, Claims 8.4–8.5], where continuity appears explicitly. Caveat: Sh:600 works with
   $K^{nice}$ and $\le^*$, $<^+$ rather than $K^{sat}$ and $\preceq^{NF}$; the correspondence is not
@@ -759,8 +759,8 @@ theorems.
 The ambient set was introduced by the agent as an encoding decision, without a flag marking it as
 an addition that goes beyond the paper, and without asking the author. Its first description, in
 the documentation, said only that a model is a structure "whose universe is a subset of a fixed
-ambient type `U`", "so that `M ⊆ N`, `M ∩ N`, `N - M` and unions of chains are literal" (NOTES.md,
-B.1: "a subset of an ambient type `U`"); it did not say that `U` carries no structure, and it did
+ambient type `U`", "so that `M ⊆ N`, `M ∩ N`, `N - M` and unions of chains are literal" (working
+notes, B.1: "a subset of an ambient type `U`"); it did not say that `U` carries no structure, and it did
 not speak of an ambient structure; the author, who wrote the paper, first suspected that the
 encoding silently assumed amalgamation, and settling that required reading the definition of a
 model and the lemmas that rename models. The question was settled only by inspecting the Lean
@@ -844,8 +844,7 @@ settled. They are not part of the lists above.
      injection on the union of the top row, and the hypothesis of (8) is what makes it injective.
 
 Items 7–9 come from an assessment of Sections 2.3–2.4. They are
-findings of the formalization that the author has not reviewed yet (NOTES.md, "Findings to review
-(not yet confirmed)", R1–R3). **Deferred** (2026-11-26): the three infinitary-logic findings are not reviewed
+findings of the formalization that the author has not reviewed yet. **Deferred** (2026-11-26): the three infinitary-logic findings are not reviewed
 in this round.
 
 7. **Proposition 2.4.5: the proof of $PC_{\aleph_0}$ does not define the class $K$.**

@@ -17,7 +17,7 @@ Only the active text of the .tex file is used (`\begin{comment}` blocks and `%` 
 ignored); in particular items 4.2.x (Hypothesis 4.5 ... Corollary 4.17 of an older version) are
 inside a comment block and are not part of the paper.
 
-ENCODING (details and reasons in NOTES.md, Part B):
+ENCODING (details and reasons in docs/METHOD.md):
 * `lam` stands for the paper's `λ` (`λ` is a Lean keyword). `λ⁺` is `Order.succ lam`, the ordinal
   `λ⁺` is `(Order.succ lam).ord`, and `λ^{+n}` is `plusN lam n` (Def 11.0.1).
 * A model is an `L`-structure whose universe is a subset of a fixed type `U`
@@ -185,7 +185,7 @@ def ClubEq (κ : Ordinal.{u}) (X Y : Set Ordinal.{u}) : Prop :=
   ∃ C, IsClubIn κ C ∧ X ∩ C = Y ∩ C
 
 -- DEVIATION (added hypothesis, encoding): every theorem that involves a cardinal `lam` takes
--- `hU : Room U lam`. It is not a hypothesis of the paper (see NOTES.md, B.1).
+-- `hU : Room U lam`. It is not a hypothesis of the paper (see docs/ERRATA.md, D.1).
 /-- ENCODING hypothesis on the ambient type: `#U` is a strong limit cardinal above `lam`, so
 every model the paper constructs (of cardinality `λ^{+n}`, or `2^{λ^{+n}}` many models) has
 isomorphic copies inside `U`. Not a hypothesis of the paper. -/
@@ -324,7 +324,7 @@ def KSys.up (S : KSys U L) : KSys U L := ⟨{M | InUp S M}, LeUp S⟩
 -- Im(f) ≼ N" (an embedding must preserve the structure).
 /-- Def 1.0.19(1): `f : M → N` is a `≼`-embedding: `M, N ∈ K`, `f` is injective on `M` and
 `Im(f) ≼ N`. ENCODING/READING: `f` is required to be an isomorphism of `M` onto the model
-`Im(f) ≼ N` (see NOTES.md, B.4). -/
+`Im(f) ≼ N` (see docs/METHOD.md). -/
 def IsEmb (S : KSys U L) (f : U → U) (M N : Model U L) : Prop :=
   M ∈ S.K ∧ N ∈ S.K ∧ ∃ M' : Model U L, S.le M' N ∧ IsoOn f M M'
 
@@ -434,7 +434,7 @@ def Homogeneous (S : KSys U L) (lam : Cardinal.{u}) (M : Model U L) : Prop :=
 -- PROOF-STAGE CHANGE: added the last clause `∀ α < ‖M‖, M_α ⊆ M` (each `M_α` is a submodel of
 -- `M`). Clarification of the encoding, approved by the author: in the paper `M = ⋃ M_α` is a union
 -- of structures; with only the equality of universes, `R` could represent another structure on the
--- universe of `M`, and Prop 6.1.6(a) fails (NOTES.md, section F). Needed for Prop 6.1.6(a).
+-- universe of `M`, and Prop 6.1.6(a) fails (docs/FIDELITY_REVIEW.md). Needed for Prop 6.1.6(a).
 /-- Def 1.0.29: `⟨M_α : α < ‖M‖⟩` is a representation of `M`: `≼`-increasing continuous with
 union `M`, `‖M_α‖ < ‖M‖`, and if `‖M‖ = κ⁺` then `‖M_α‖ = κ`. -/
 def IsRepresentation (S : KSys U L) (M : Model U L) (Ms : Ordinal.{u} → Model U L) : Prop :=

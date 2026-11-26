@@ -88,13 +88,14 @@ no `native_decide`.
   confirmation by the author.
 * `FIDELITY_REVIEW.md`: the dependency tree of the main theorems; every definition next to the
   original text of the paper; the tagged items.
-* `NOTES.md`: the working log of the formalization (decisions, readings, progress).
+* `METHOD.md`: how the formalization was made and checked (the two stages, the tags, the
+  fidelity checks, `CitedResults`, the ambient type `U`, the main decisions).
 * `UNPROVED_STATEMENTS.md`: the statements removed from the Lean files.
 * `MUUNIF_DEFINITION.md`: the definition of `μ_unif` used for Thm 1.0.2, from [Sh:88r].
 * `AXIOMS_CHECK.txt`: the output of `#print axioms`.
 
-Line numbers in the documentation and in the Lean comments refer to the LaTeX source of
-arXiv:0901.0852v2. The source is not included here.
+Line numbers of the form "l. N" in the docs refer to the LaTeX source of arXiv:0901.0852v2
+(available from arXiv); the source is not included here.
 
 ## License
 

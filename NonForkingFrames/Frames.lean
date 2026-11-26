@@ -98,8 +98,7 @@ by the author to be part of the source): for an AEC `(K, ≼)`, (i) a `≼`-dire
 `K` is a model of `K`, each member `≼` the union (so `K^up ⊆ K`); (ii) `≼^up ⊆ ≼` (the extended
 relation agrees with the original one), for models of `K^up` of any size. Used in the paper's
 Section 2.1 ("`K⁺ ⊆ K`") and in Cor 11.1.6, Thm 11.1.7, Thm 1.0.2. -/
--- CITED: [Sh:h].II Lemma 1.23 (clauses (i), (ii) confirmed by the author; see NOTES.md, "Cited
--- results widened by the author").
+-- CITED: [Sh:h].II Lemma 1.23 (clauses (i), (ii) confirmed by the author; see docs/METHOD.md).
 -- CITED: stated as a `Prop`, assumed through the field `CitedResults.fact_1_0_18_up`.
 def Fact_1_0_18_up : Prop :=
   ∀ {U : Type u} {L : Language.{u, u}}
@@ -130,7 +129,7 @@ theorem LeUp.mono {S S' : KSys U L} (hle : ∀ M N, S.le M N → S'.le M N) {M N
 -- the same holds for Prop 1.0.23(2),(3), Prop 1.0.30, Thm 1.0.32 and Remark 2.5.4.
 /-- Prop 1.0.23(1): "For every `M, N₀, N₁ ∈ K_λ`, `a ∈ N₀ - M` and `b ∈ N₁ - M`,
 `(M, N₀, a) E* (M, N₁, b)` iff there is an amalgamation `(f₀, f₁, N)` of `N₀, N₁` over `M` such
-that `f₀(a) = f₁(b)`." (Ambient assumption: `(K, ≼)` is an AEC, see NOTES.md B.3.) -/
+that `f₀(a) = f₁(b)`." (Ambient assumption: `(K, ≼)` is an AEC, see docs/METHOD.md.) -/
 -- AGENT-CHOICE: the amalgam `N` is only required to be in `K` (no `LST ≤ λ` is assumed, so an
 -- amalgam in `K_λ` cannot be obtained from the `N₂ ∈ K` of `E*`).
 theorem prop_1_0_23_1 (lam : Cardinal.{u}) (hU : Room U lam) (S : KSys U L) (hS : IsAEC S)
@@ -544,7 +543,7 @@ def Ax1b : Prop := AP s.S lam
 
 -- AGENT-CHOICE (reading): "no ≼-maximal model in K_λ" is maximality inside `(K_λ, ≼ ↾ K_λ)`.
 /-- Def 2.1.1(1)(c): there is no `≼`-maximal model in `K_λ` (maximality inside
-`(K_λ, ≼ ↾ K_λ)`, see NOTES.md). -/
+`(K_λ, ≼ ↾ K_λ)`, see docs/METHOD.md). -/
 def Ax1c : Prop := ∀ M ∈ s.S.Kc lam, ¬ IsMaximal (s.S.restrict (s.S.Kc lam)) M
 
 /-- Def 2.1.1(2)(a): `S^bs(M) ⊆ S^na(M) = {tp(a, M, N) : M ≺ N ∈ K_λ, a ∈ N - M}`. -/
@@ -754,7 +753,7 @@ theorem Frame.nfWit_of_ERel {s : Frame U L} {lam : Cardinal.{u}} (hS : IsAEC s.S
 -- AGENT-CHOICE (Q3 part B): `M₃* ∈ K_λ`; without it the conclusion is false by (3)(a).
 /-- Prop 2.1.2: "If `⨿(M₀, M₁, a, M₃)` and `tp(b, M₁, M₃*) = tp(a, M₁, M₃)`, then by
 Definition 2.1.1.3.b (the monotonicity axiom) `⨿(M₀, M₁, b, M₃*)`." The paper states no
-hypothesis on `s`; see NOTES.md, C.6. -/
+hypothesis on `s`; see docs/FIDELITY_REVIEW.md. -/
 theorem prop_2_1_2 (lam : Cardinal.{u}) (hU : Room U lam) (s : Frame U L) (h0a : s.Ax0a)
     (h0b : s.Ax0b lam) (h1b : s.Ax1b lam) (h3a : s.Ax3a lam) (h3b : s.Ax3b lam)
     (M₀ M₁ M₃ M₃s : Model U L) (a b : U) (hM₃s : M₃s ∈ s.S.Kc lam) (h : s.nf M₀ M₁ a M₃)
@@ -1109,10 +1108,10 @@ def IsStableIn (S : KSys U L) (lam μ : Cardinal.{u}) : Prop :=
 
 Infinitary logic (`L_{∞,ω}`, `L_{ω₁,ω}`, fragments, `PC` classes) and Shelah's definable types
 are not in Mathlib. They enter only through the uninterpreted data `ExtLogic` below, so the
-statements of 2.3 (and the `PC_{ℵ₀}` part of Prop 2.4.5) are schematic; see NOTES.md, B.9. -/
+statements of 2.3 (and the `PC_{ℵ₀}` part of Prop 2.4.5) are schematic; see docs/METHOD.md. -/
 
 -- DEVIATION (encoding): infinitary logic, PC classes, fragments and Shelah's definable types
--- are uninterpreted parameters; the statements of 2.3 are schematic (NOTES.md, B.9).
+-- are uninterpreted parameters; the statements of 2.3 are schematic (docs/METHOD.md).
 /-- ENCODING: uninterpreted external notions used in Subsections 2.3–2.4. -/
 structure ExtLogic (U : Type u) (L : Language.{u, u}) where
   /-- `N ≡_{L_{∞,ω}} M` -/
@@ -1222,7 +1221,7 @@ def tpoKSys : KSys U LOrd :=
 -- AGENT-CHOICE (reading): `E` is undefined in 2.4; `aE^M` is read as `a` together with its
 -- connectedness component.
 /-- The class `aE^M` in Remark 2.4.7 (`E` is not defined in Subsection 2.4; read as the
-connectedness component together with `a`, see NOTES.md). -/
+connectedness component together with `a`, see docs/METHOD.md). -/
 def compE (M : Model U LOrd) (a : M.carrier) : Set M.carrier := {b | b = a ∨ b ∈ comp M a}
 
 /-! ## 2.5 Additional properties of a frame -/
@@ -1293,11 +1292,10 @@ hypothesis (one field per cited result; none is proved here). Every theorem that
 directly or through other theorems, takes the parameter `[C : CitedResults]`. -/
 class CitedResults : Prop where
   /-- Fact 1.0.18 (`Fact_1_0_18`). Source: [Sh:h].II Lemma 1.23 (paper: "Fact [Lemma 1.23 in
-  [Sh:h].II]"), with the hypothesis `K ≠ ∅` added (section F of NOTES.md). -/
+  [Sh:h].II]"), with the hypothesis `K ≠ ∅` added (see docs/METHOD.md, cited results). -/
   fact_1_0_18 : Fact_1_0_18.{u}
   /-- Fact 1.0.18 with the clauses widened by the author (`Fact_1_0_18_up`). Source: [Sh:h].II
-  Lemma 1.23; clauses (i), (ii) confirmed by the author to be part of the source (NOTES.md, "Cited
-  results widened by the author"). -/
+  Lemma 1.23; clauses (i), (ii) confirmed by the author to be part of the source (docs/METHOD.md). -/
   fact_1_0_18_up : Fact_1_0_18_up.{u}
   /-- Prop 1.0.31, saturativity = model homogeneity (`Prop_1_0_31`). Source: [Sh:h].II Lemma 1.14
   (paper: "By Lemma 1.14 in [Sh:h].II"). -/
@@ -1310,7 +1308,7 @@ class CitedResults : Prop where
   thm_1_0_32_2 : Thm_1_0_32_2.{u}
   /-- Prop 2.5.7, amalgamation with non-forking on both sides (`Prop_2_5_7`). Source: [Sh:h].II
   Claim 2.16 (paper: "By Claim 2.16 in [Sh:h].II"), with the hypothesis weakened as decided by
-  the author (NOTES.md, "Cited results used under weaker hypotheses than stated"). -/
+  the author (docs/METHOD.md). -/
   prop_2_5_7 : Prop_2_5_7.{u}
 
 /-- "`s` satisfies conditions 1 and 2 of a semi-good `λ`-frame" (Thm 2.5.8). -/
@@ -1342,7 +1340,7 @@ def nfGe (M₀ : Model U L) (a : U) (M₁ M₂ : Model U L) : Prop :=
 
 -- AGENT-CHOICE (reading): the undefined symbol `⨿^{≤λ}` is read as `⨿^{≥λ}` (Def 2.6.1).
 /-- Def 2.6.2: for `M₀ ≼ M₁` in `K_{≥λ}` and `p ∈ S(M₁)`, `p` does not fork over `M₀` when for
-some triple `(M₁, M₂, a) ∈ p`, `⨿^{≤λ}(M₀, a, M₁, M₂)` (read as `⨿^{≥λ}`, NOTES.md). -/
+some triple `(M₁, M₂, a) ∈ p`, `⨿^{≤λ}(M₀, a, M₁, M₂)` (read as `⨿^{≥λ}`, docs/METHOD.md). -/
 def NotForkGe (M₀ M₁ : Model U L) (p : Set (Tri U L)) : Prop :=
   M₀ ∈ s.S.KGe lam ∧ M₁ ∈ s.S.KGe lam ∧ s.S.le M₀ M₁ ∧ p ∈ SAll s.S lam M₁ ∧
     ∃ (M₂ : Model U L) (a : U), (M₁, M₂, a) ∈ p ∧ s.nfGe lam M₀ a M₁ M₂
@@ -1371,7 +1369,7 @@ def WLCFor (R : Model U L → Model U L → Prop) : Prop :=
 -- Def 2.6.5 (weak local character for ≺*-increasing sequences); cf. Remark 2.6.7.
 /-- Def 2.6.6: weak local character: for some relation `R = ≺*_λ`, (1) `R` is a relation on
 `K_λ`, (2) `R ⊆ ≺`, (3) `M₀ R M₁ ≼ M₂ ∈ K_λ → M₀ R M₂`, (4) local character for `R`-increasing
-sequences (read as Def 2.6.5, NOTES.md), (5) if `M₀ ∈ K_λ`, `M₀ ≺ M₂ ∈ K_{λ⁺}` then
+sequences (read as Def 2.6.5; see docs/ERRATA.md, A.1.11), (5) if `M₀ ∈ K_λ`, `M₀ ≺ M₂ ∈ K_{λ⁺}` then
 `M₀ R M₁ ≼ M₂` for some `M₁ ∈ K_λ`. -/
 def WeakLC : Prop :=
   ∃ R : Model U L → Model U L → Prop,
@@ -2147,7 +2145,7 @@ def Frame.ExistProp (s : Frame U L) (lam : Cardinal.{u}) (T : Set (Tri U L)) : P
 
 -- AGENT-CHOICE (reading): the paper's condition "N_{α*} = ⋃{N_ε : ε < α}" has a free `α` and the
 -- decomposed model `M*` is never mentioned; we read it as `N_{α*} = M*` (and `ε ⪯ α*` as
--- `ε ≤ α*`). See NOTES.md.
+-- `ε ≤ α*`). See docs/METHOD.md.
 /-- Def 3.2.2: `⟨d_ε, N_ε : ε < α*⟩⌢⟨N_{α*}⟩` is a decomposition of `M*` over `M` by `K^{3,*}`:
 (1) `α* < λ⁺`, `N_ε ∈ K_λ` (`ε < α*`), (2) `⟨N_ε : ε ≤ α*⟩` increasing continuous,
 (3) `N₀ = M`, (4) `(N_ε, N_{ε+1}, d_ε) ∈ K^{3,*}`. -/
@@ -4224,7 +4222,7 @@ theorem Frame.thm_5_3_7_c [C : CitedResults.{u}]
 
 -- DEVIATION (author-confirmed erratum): part (c). The paper omits "`tp(a, N₀, N₁)` is basic" and
 -- the passage from `N₁` to an extension `N₁* ≽ N₁`, which is what its proof via Thm 3.2.3(3)
--- produces. See NOTES.md, section C.
+-- produces. See docs/ERRATA.md.
 /-- Thm 5.3.7 (existence theorem for `NF`): suppose `N₀ ≼ Nₙ` (`n = 1, 2`) and `N₁ ∩ N₂ = N₀`.
 (a) For some `N₃ ∈ K_λ`, `NF(N₀, N₁, N₂, N₃)`. (b) If `N₁` is decomposable over `N₀` by
 `K^{3,uq}`, then `NF*(N₀, N₁, N₂, N₃)` for some `N₃ ∈ K_λ`. (c), corrected: if `a ∈ N₁ - N₀` and
@@ -5073,7 +5071,7 @@ theorem transit_weak {S : KSys U L} (hS : IsAEC S) {lam : Cardinal.{u}} (hU : Ro
         exact (hprev ξ hξβ).2.2.2.2.2.2.1 ξ le_rfl x hxξ
 
 -- DEVIATION (author-confirmed erratum): the element `a` is explicit and the conditions of Def
--- 5.4.1(1) are included. See NOTES.md, section C.
+-- 5.4.1(1) are included. See docs/ERRATA.md.
 /-- Def 5.4.2, corrected. Original text: `NF^uq = {(M₀, M₁, M₂, M₃) : ∃ a ∈ M₁ - M₀,
 (M₀, M₁, a) ∈ K^{3,uq} and tp(a, M₂, M₃) does not fork over M₀}`. -/
 def Frame.NFuqE (s : Frame U L) (lam : Cardinal.{u}) : U → QRel U L := fun a M₀ M₁ M₂ M₃ =>
@@ -10475,7 +10473,7 @@ theorem prop_6_1_6_a [C : CitedResults.{u}]
 theorem prop_6_1_6_b [C : CitedResults.{u}]
     (lam : Cardinal.{u}) (hU : Room U lam) (s : Frame U L) (hs : Hyp_6_1_1 s lam)
     -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`. Reflexivity needs a model in `K_λ`; for finite `λ` it can
-    -- fail (see NOTES.md, "Proof-stage changes").
+    -- fail (see docs/METHOD.md).
     (hinf : ℵ₀ ≤ lam) :
     (∀ M ∈ s.S.Kc (Order.succ lam), s.leNF lam M M) ∧
     (∀ M N, s.leNF lam M N → s.leNF lam N M → M = N) ∧
@@ -10504,7 +10502,7 @@ theorem prop_6_1_6_d [C : CitedResults.{u}]
 /-- Prop 6.1.6(e): `K_{λ⁺}` has no `≼^NF`-maximal model. -/
 theorem prop_6_1_6_e [C : CitedResults.{u}]
     (lam : Cardinal.{u}) (hU : Room U lam) (s : Frame U L) (hs : Hyp_6_1_1 s lam)
-    -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`; false for finite `λ` (see NOTES.md, "Proof-stage changes").
+    -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`; false for finite `λ` (see docs/METHOD.md).
     (hinf : ℵ₀ ≤ lam) :
     ∀ M ∈ s.S.Kc (Order.succ lam), ¬ IsMaximal (s.nfKSys lam) M :=
   fun _ hM => Frame.leNF_noMax hU hs hinf hM
@@ -10512,7 +10510,7 @@ theorem prop_6_1_6_e [C : CitedResults.{u}]
 /-- Prop 6.1.6(f): if `(K_{λ⁺}, ≼^NF)` satisfies smoothness, then it is an AEC in `λ⁺`. -/
 theorem prop_6_1_6_f [C : CitedResults.{u}]
     (lam : Cardinal.{u}) (hU : Room U lam) (s : Frame U L) (hs : Hyp_6_1_1 s lam)
-    -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, used by reflexivity (item (b)); see NOTES.md,
+    -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, used by reflexivity (item (b)); see docs/METHOD.md,
     -- "Proof-stage changes".
     (hinf : ℵ₀ ≤ lam)
     (hsm : ∀ δ : Ordinal.{u}, Order.IsSuccLimit δ → (s.nfKSys lam).AxSmooth δ) :
@@ -11196,7 +11194,7 @@ theorem IsAEC.nat_chain {S : KSys U L} (hS : IsAEC S) {lam : Cardinal.{u}} (hinf
 -- PROOF-STAGE CHANGE: hypothesis `s.WeakLC lam` replaced by local character `s.Ax3c lam`, and `ℵ₀ ≤ λ` added.
 -- Reason: the paper's proof applies local character to `⟨M_n⟩⌢⟨M_ω⟩⌢⟨N_ω⟩`, which for weak local character
 -- needs `M_ω ≺* N_ω`, not provided. The proof also adds `N_n ∩ M ⊆ M_{n+1}` (so that `c ∉ M`).
--- See NOTES.md, "Changes to review". (The theorem was moved here because the proof uses later lemmas.)
+-- See docs/METHOD.md. (The theorem was moved here because the proof uses later lemmas.)
 /-- Thm 2.6.8(1), density: if `s` satisfies local character (original: "weak local character"),
 `M ≺ N`, `M ∈ K_{≥λ}`, then there is `a ∈ N - M` with `tp(a, M, N) ∈ S^bs_{≥λ}(M)`. (Standing hypothesis
 of 2.6.8: `s` is a semi-good `λ`-frame except local character.) -/
@@ -11402,7 +11400,7 @@ def satKSys : KSys U L :=
 -- only increasing in `K_λ`.
 -- DEVIATION (author-confirmed erratum): the paper requires all three sequences to be increasing
 -- continuous. Then the definition is unsatisfiable: at a limit point `δ ∈ E` of `E`, clauses (b),
--- (c) and continuity give `N_{1,δ} = N^⊕_{1,δ}`, contradicting (d). See NOTES.md, section C.
+-- (c) and continuity give `N_{1,δ} = N^⊕_{1,δ}`, contradicting (d). See docs/ERRATA.md.
 /-- Def 7.1.4: witnesses `⟨N_{0,α}⟩, ⟨N_{1,α}⟩` (`α < λ⁺`, increasing continuous in `K_λ`),
 `⟨N^⊕_{1,α}⟩` (`α < λ⁺`, increasing in `K_λ`) and a club `E` for `M₀ ≺⁺_{λ⁺} M₁`:
 (a) `Mₙ = ⋃ N_{n,α}`, (b) `α ∈ E → N_{0,α} ≼ N_{1,α} ≼ N^⊕_{1,α}`, (c) `α < β` in `E` →
@@ -11972,7 +11970,7 @@ abbrev PlusStrategy (U : Type u) (L : Language.{u, u}) :=
 -- "player 2 wins" (a typo: there are players 0 and 1) is read as "player 1 wins".
 -- PROOF-STAGE CHANGE (author-approved): plays may be partial (length `γ`), and player 0 must move
 -- strictly, `N_{0,α} ≺ N_{0,α+1}`. The paper has `N_{0,α} ≼ N_{0,α+1}`; see `Frame.Winning` and
--- NOTES.md, section C.
+-- docs/ERRATA.md.
 /-- Def 7.1.11: `⟨N_{0,α}⟩, ⟨N_{1,α}⟩` (`α < γ`) is a (possibly partial, `γ ≤ λ⁺`) play of the
 `≺⁺_{λ⁺}`-game in which player 1 uses `F` and player 0 obeys the rules: move 0: `N_{0,0} ≼ N_{1,0}`
 in `K_λ`; limit `α`: unions; move `α+1`: `N_{0,α} ≺ N_{0,α+1} ∈ K_λ`,
@@ -11991,7 +11989,7 @@ def Frame.IsPlay (s : Frame U L) (lam : Cardinal.{u}) (F : PlusStrategy U L) (γ
 
 -- PROOF-STAGE CHANGE (author-approved): (1) legality of player 1 is required at every stage of
 -- every partial play, so a strategy cannot win because no complete play exists; (2) the winning
--- condition applies only when `⋃ N_{0,α} ∈ K_{λ⁺}`. See NOTES.md, section C.
+-- condition applies only when `⋃ N_{0,α} ∈ K_{λ⁺}`. See docs/ERRATA.md.
 /-- Def 7.1.11: `F` is a winning strategy for player 1: (1) in every partial play by `F` reaching
 move `α+1`, player 1's move is legal (`N_{1,α} ≼ N_{1,α+1}`,
 `NF(N_{0,α}, N_{1,α}, N_{0,α+1}, N_{1,α+1})`); (2) in every play of length `λ⁺` by `F`, if
@@ -12725,7 +12723,7 @@ theorem prop_7_1_12_b [C : CitedResults.{u}] (lam : Cardinal.{u}) (hU : Room U l
 
 -- PROOF-STAGE CHANGE: added `hinf : ℵ₀ ≤ λ`. For finite `λ` with `K_λ = ∅` the statement fails, since
 -- witnesses live in `K_λ` (same change as Prop 6.1.6(b),(e),(f)). The proof is a direct run of the
--- corrected construction with `D = M₀`, not "by c" as in the paper (see NOTES.md, gaps).
+-- corrected construction with `D = M₀`, not "by c" as in the paper (see docs/ERRATA.md).
 /-- Prop 7.1.12(a): every `M₀ ∈ K_{λ⁺}` has some `M₁` with `M₀ ≺⁺ M₁`. -/
 theorem prop_7_1_12_a [C : CitedResults.{u}] (lam : Cardinal.{u}) (hU : Room U lam) (s : Frame U L)
     (hs : Hyp_7_1_1 s lam) (hinf : ℵ₀ ≤ lam) :
@@ -18340,7 +18338,7 @@ theorem thm_9_1_13 [C : CitedResults.{u}]
     ((¬ ∀ δ : Ordinal.{u}, Order.IsSuccLimit δ → (s.satKSys lam).AxSmooth δ) ↔
       ∃ M₁s ∈ s.Ksat lam, ∃ M₂s ∈ s.Ksat lam, s.leOt lam M₁s M₂s ∧ ¬ s.ltNF lam M₁s M₂s) ∧
     ((∃ M₁s ∈ s.Ksat lam, ∃ M₂s ∈ s.Ksat lam, s.leOt lam M₁s M₂s ∧ ¬ s.ltNF lam M₁s M₂s) ↔
-      -- PROOF-STAGE CHANGE: item (c) restated; see NOTES.md, "Changes to review". The paper's text
+      -- PROOF-STAGE CHANGE: item (c) restated; see docs/METHOD.md. The paper's text
       -- omits continuity, without which `c ⇒ a` has no proof, and it requires `M_ε ≺⁺ M_ζ` at limit
       -- `ζ`, which neither Prop 8.1.6 nor the proof gives.
       ∃ M : Ordinal.{u} → Model U L,
@@ -19696,7 +19694,7 @@ theorem Frame.notForkGe_of_notFork {s : Frame U L} {lam : Cardinal.{u}} (hU : Ro
     hs'' lN'' kN'' n
 
 /-- AUX: not in paper. Axiom (3)(e) (symmetry) of Def 2.1.1 for `s⁺` (Prop 10.1.12), following the
-paper's steps (a)–(e), with two repairs (see NOTES.md, "Gaps in the paper's proofs"): Thm 5.15(e)
+paper's steps (a)–(e), with two repairs (see docs/ERRATA.md): Thm 5.15(e)
 is used on the other side (`Frame.nfhat_dual`), and the isomorphism of step (28) is taken over
 `M₀ ∪ N₄` (not `M₀ ∪ N₂`), so that it fixes `a₁`. -/
 theorem Frame.splus_ax3e [C : CitedResults.{u}]

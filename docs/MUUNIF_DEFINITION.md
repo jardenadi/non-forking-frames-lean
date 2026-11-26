@@ -4,8 +4,8 @@ Source: [Sh:88r], from the screenshot the author uploaded (2026-11-25). This rep
 earlier version of this file, which used the definition from a commented-out block of the tex
 source. That definition is kept below only as a note (section 5).
 
-No Lean has been written for this definition yet. (The `muUnif` now in `Frames.lean` formalizes
-the old definition of section 5. It is to be replaced after the author confirms this file.)
+Lean: the AUX definition `muUnif` and the AUX lemma `muUnif_le` in `NonForkingFrames/Frames.lean`
+formalize sections 1 and 3; `thm_1_0_2_muUnif` is Thm 1.0.2 with this `μ_unif`.
 
 ## 1. The definition ([Sh:88r])
 
@@ -42,8 +42,8 @@ in $\lambda$.
 * **A value stated in the screenshot.** The screenshot says
   $\mu_{unif}(\lambda^+, 2^\lambda) = 2^\lambda$ for $\lambda \ge \beth_\omega$, while the tex
   comment (l. 8030–8034) says $\mu_{unif}(\mu^+, 2^\mu) = 2^{\mu^+}$ for $\mu \ge \beth_\omega$.
-  This discrepancy is not used by `hunif` (only the upper bound of section 3 is). To be recorded
-  in `NOTES.md` after the author confirms.
+  This discrepancy is not used by `hunif` (only the upper bound of section 3 is). It is recorded in
+  `ERRATA.md`, C.8.
 
 ## 3. Proof of $\mu_{unif}(\lambda^+, \chi) \le \chi^{\lambda^+}$ ($\lambda$ infinite)
 
@@ -69,9 +69,10 @@ $\lambda_{paper}$ is infinite).
 
 ## 4. Status
 
-* Definition: from the author's screenshot of [Sh:88r]; not yet confirmed in this form
-  ($\delta < \lambda$ in (b), as in the screenshot).
-* Proof of section 3: proposed by the author (2026-11-25); not yet formalized.
+* Definition: from the author's screenshot of [Sh:88r]; section 1 confirmed by the author
+  (2026-11-25), with $\delta < \lambda$ in (b) as in the screenshot. The author confirmed that
+  this is the $\mu_{unif}$ of the paper (`ERRATA.md`, C.8).
+* Proof of section 3: proposed by the author (2026-11-25); formalized as `muUnif_le`.
 
 ## 5. Note: the old definition (from the commented-out tex block)
 

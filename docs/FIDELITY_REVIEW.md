@@ -6,7 +6,7 @@ Generated 2026-11-13 from the compiled Lean files (`NonForkingFrames/AEC.lean`, 
 
 Standing policy, item 5: (a) dependency tree of the main theorems down to every definition; (b) for each definition, the original text next to its Lean statement, flagged if changed; (c) `#print axioms` of each main theorem.
 
-**Flags.** *changed in the proof stage*: a `-- PROOF-STAGE CHANGE:` comment (logged in NOTES.md, "Proof-stage changes" / "Changes to review"); *deviation*: an author-confirmed erratum or a typo fixed to evident intent (NOTES.md sections C, D); *encoding*: a modelling device with no mathematical content (ambient type `U`, `Room`, `ExtLogic`, …); *agent reading*: a reading chosen by the agent (NOTES.md section E); *cited*: a result the paper cites, assumed through `CitedResults`; *unchanged*: none of these tags.
+**Flags.** *changed in the proof stage*: a `-- PROOF-STAGE CHANGE:` comment (see docs/METHOD.md, "Tags in the Lean source"); *deviation*: an author-confirmed erratum or a typo fixed to evident intent (docs/ERRATA.md); *encoding*: a modelling device with no mathematical content (ambient type `U`, `Room`, `ExtLogic`, …); *agent reading*: a reading chosen by the agent (see docs/METHOD.md); *cited*: a result the paper cites, assumed through `CitedResults`; *unchanged*: none of these tags.
 
 ## (c) `#print axioms` of the main theorems
 
@@ -21,72 +21,72 @@ No declaration of either module uses `sorryAx` (scan of all constants). The cite
 
 ## Summary: items whose meaning differs from the paper
 
-Listed: every definition (in the tree or not) and every paper statement (theorem, proposition, corollary, claim, …) of either file that is tagged *changed in the proof stage* or *deviation*. The column *where* says whether the item is a main statement, enters the statements of the main theorems, is another item of the dependency tree (a), is a paper statement outside the tree (not used by the proofs of the main theorems), or is a definition outside the tree (used by no statement of the tree). *Encoding* and *agent reading* items are listed in (a.2) and shown in full in (b). Each change is also logged, with old / new / reason, in NOTES.md ("Proof-stage changes", "Changes to review", sections C, D, F).
+Listed: every definition (in the tree or not) and every paper statement (theorem, proposition, corollary, claim, …) of either file that is tagged *changed in the proof stage* or *deviation*. The column *where* says whether the item is a main statement, enters the statements of the main theorems, is another item of the dependency tree (a), is a paper statement outside the tree (not used by the proofs of the main theorems), or is a definition outside the tree (used by no statement of the tree). *Encoding* and *agent reading* items are listed in (a.2) and shown in full in (b). The reason for each change is given in its tag comment in the Lean source; the errata of the paper are in docs/ERRATA.md (see also docs/METHOD.md).
 
 | item | Lean | where | tag lines |
 |---|---|---|---|
 | Def 1.0.3 | `KSys.AxSmooth` (AEC.lean:235) | main statements | -- PROOF-STAGE CHANGE: added `N' ∈ S.K` (the union is in the class). Without it Remark |
 | Def 1.0.22 | `typePool` (AEC.lean:374) | main statements | -- DEVIATION (author-confirmed erratum): the paper has `N₂ ∈ K_λ`; the author confirmed that |
 | Def 1.0.29 | `IsRepresentation` (AEC.lean:440) | definition outside the tree | -- PROOF-STAGE CHANGE: added the last clause `∀ α < ‖M‖, M_α ⊆ M` (each `M_α` is a submodel of |
-| Prop 1.0.23 | `prop_1_0_23_2` (Frames.lean:168) | paper statement outside the tree | -- PROOF-STAGE CHANGE: symmetry is stated for triples `t = (M, N₀, a)` with `‖N₀‖ < #U`. The |
-| Prop 1.0.30 | `prop_1_0_30` (Frames.lean:340) | paper statement in the tree | -- PROOF-STAGE CHANGE: hypothesis `ℵ₀ ≤ λ` added. For finite `λ` the ordinal `λ⁺` has no club, so |
-| Def 2.1.1 | `Frame.Ax3a` (Frames.lean:578) | main statements | -- PROOF-STAGE CHANGE: the presupposition `M₀ ≼ M₁ ≼ M₃` (needed for `tp(a, Mₙ, M₃)` to be a |
-| Def 2.1.1 | `Frame.Ax3b` (Frames.lean:591) | main statements | -- PROOF-STAGE CHANGE: added `M₃** ∈ K_λ`. Without it 3(b) contradicts 3(a) (which puts every |
-| Prop 2.1.2 | `prop_2_1_2` (Frames.lean:758) | paper statement in the tree | -- DEVIATION (author decision Q3): hypotheses (0)(a) AEC, (1)(b) AP, (3)(a), (3)(b). |
-| Def 2.2.2 | `trivialFrame` (Frames.lean:928) | definition outside the tree | -- PROOF-STAGE CHANGE: the quadruples of the trivial ⨿ also satisfy `M₀ ≼ M₁ ≼ M₃` (the |
-| Prop 2.5.7 | `Prop_2_5_7` (Frames.lean:1278) | main statements | -- PROOF-STAGE CHANGE (author decision): hypothesis weakened from `s.IsSemiGood lam` (original: |
-| Def 2.6.1 | `Frame.nfGe` (Frames.lean:1336) | main statements | -- DEVIATION (author-confirmed erratum): clause (3) as written ("for each `N ∈ K_λ`, |
-| Remark 2.6.7 | `rem_2_6_7` (Frames.lean:1430) | paper statement outside the tree | -- PROOF-STAGE CHANGE: hypothesis `R ⊆ ≼` strengthened to `R ⊆ ≺` (as in Def 2.6.6(2)). With |
-| Thm 3.2.3 | `thm_3_2_3_2` (Frames.lean:2256) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `hM : M ∈ K_λ` (implicit in the paper, where `S^bs(M)` is only |
-| Prop 3.2.5 | `prop_3_2_5` (Frames.lean:2622) | paper statement in the tree | -- DEVIATION (author-confirmed erratum): added `α* < λ⁺` and `M₀ ∈ K_λ`. As written, the statement |
-| Prop 4.1.12 | `prop_4_1_12_2` (Frames.lean:3653) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `hM : M ∈ K_λ` (implicit in the paper, where `S^bs(M)` is only |
-| Prop 5.2.2 | `prop_5_2_2` (Frames.lean:3746) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `M₃ ∈ K_λ` in item (2). Without it the direction `⊗_R → (2)` |
-| Thm 5.3.7 | `thm_5_3_7` (Frames.lean:4236) | paper statement outside the tree | -- DEVIATION (author-confirmed erratum): part (c). The paper omits "`tp(a, N₀, N₁)` is basic" and |
-| Prop 5.3.8 | `prop_5_3_8` (Frames.lean:4256) | paper statement in the tree | -- DEVIATION (author-confirmed erratum): added `α* < λ⁺` and `M_{a,0}, M_{b,0} ∈ K_λ`. As written,<br>-- DEVIATION (author-confirmed: α* ≠ 0 omitted in the paper): added `0 < α*`. |
-| Prop 5.3.9 | `prop_5_3_9_1` (Frames.lean:4453) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `hne`. For `N₁ = N₀` a witness has length `0`, which forces |
-| Prop 5.3.9 | `prop_5_3_9_2` (Frames.lean:4532) | paper statement in the tree | -- DEVIATION (typo fixed to evident intent): the paper's `NF*(M₁, N₁, M₂, N₃)` has base `M₁`; |
-| Prop 5.3.9 | `prop_5_3_9_3` (Frames.lean:4577) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `M₃* ∈ K_λ`; `NF` is a relation on `K_λ` (Def 5.3.2), so the |
-| Def 5.4.1 | `OtMinus` (Frames.lean:4675) | other statements of the tree | -- PROOF-STAGE CHANGE: added `M₄ ∈ K_λ` (`R ⊆ ⁴(K_λ)` in the paper); without it clause (3) is |
-| Def 5.4.2 | `Frame.NFuqE` (Frames.lean:5079) | definition outside the tree | -- DEVIATION (author-confirmed erratum): the element `a` is explicit and the conditions of Def |
-| Prop 5.4.3 | `prop_5_4_3` (Frames.lean:5217) | paper statement outside the tree | -- DEVIATION (author-confirmed erratum): (1) is for `NF^uq` with `a` explicit (`OtMinusE`, in which |
-| Prop 5.4.4 | `prop_5_4_4` (Frames.lean:5392) | paper statement in the tree | -- DEVIATION (typo fixed to evident intent): the paper compares `(f^a_{α*}, id, N^a_{2,α*})` with<br>-- PROOF-STAGE CHANGE: `α ≤ α*` instead of `α < α*`, and the hypotheses `hf0`, `hfai`, `hfbi`. |
-| Prop 3.1.10 | `prop_3_1_10` (Frames.lean:5937) | paper statement outside the tree | -- DEVIATION (author-confirmed): added `θ^a < λ⁺`. The paper has no bound on `θ^a`. The use in |
-| Thm 5.5.1 | `thm_5_5_1` (Frames.lean:7975) | paper statement outside the tree | -- DEVIATION (author-confirmed: α* ≠ 0 omitted in the paper): added `0 < α*`. |
-| Prop 6.1.6 | `prop_6_1_6_b` (Frames.lean:10475) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`. Reflexivity needs a model in `K_λ`; for finite `λ` it can |
-| Prop 6.1.6 | `prop_6_1_6_e` (Frames.lean:10505) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`; false for finite `λ` (see NOTES.md, "Proof-stage changes"). |
-| Prop 6.1.6 | `prop_6_1_6_f` (Frames.lean:10513) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, used by reflexivity (item (b)); see NOTES.md, |
-| Thm 2.5.8 | `thm_2_5_8_2` (Frames.lean:10996) | paper statement in the tree | -- DEVIATION (author decision Q4): (0)(a) AEC and (0)(b) `LST ≤ λ` added (`h0`); the proof of |
-| Thm 2.6.8 | `thm_2_6_8_1` (Frames.lean:11203) | paper statement in the tree | -- PROOF-STAGE CHANGE: hypothesis `s.WeakLC lam` replaced by local character `s.Ax3c lam`, and `ℵ₀ ≤ λ` added. |
-| Def 7.1.4 | `Frame.PlusWit` (Frames.lean:11416) | other statements of the tree | -- PROOF-STAGE CHANGE: continuity is required only of `⟨N_{0,α}⟩` and `⟨N_{1,α}⟩`; `⟨N^⊕_{1,α}⟩` is<br>-- DEVIATION (author-confirmed erratum): the paper requires all three sequences to be increasing<br>-- PROOF-STAGE CHANGE: ENCODING (clarification, author-confirmed; not an erratum): clause (a) |
-| Prop 7.1.7 | `prop_7_1_7` (Frames.lean:11755) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `N₀ ∈ K_λ` (`hN₀`, author-approved). The paper leaves it implicit; the |
-| Def 7.1.11 | `Frame.IsPlay` (Frames.lean:11983) | definition outside the tree | -- PROOF-STAGE CHANGE (author-approved): plays may be partial (length `γ`), and player 0 must move |
-| Def 7.1.11 | `Frame.Winning` (Frames.lean:12004) | definition outside the tree | -- PROOF-STAGE CHANGE (author-approved): (1) legality of player 1 is required at every stage of |
-| Prop 7.1.12 | `prop_7_1_12_a` (Frames.lean:12730) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `hinf : ℵ₀ ≤ λ`. For finite `λ` with `K_λ = ∅` the statement fails, since |
-| Thm 7.1.18 | `thm_7_1_18_b` (Frames.lean:14587) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, used by reflexivity (as in Prop 6.1.6(f)). |
-| Prop 8.1.3 | `prop_8_1_3_a` (Frames.lean:14783) | paper statement outside the tree | -- DEVIATION (author-confirmed erratum): added `M₁ ∈ K^sat` and `M₀ ≠ M₁`. Def 8.1.2 requires both |
-| Prop 8.1.3 | `prop_8_1_3_b` (Frames.lean:14796) | paper statement in the tree | -- DEVIATION (author-confirmed erratum): added `M_{δ+1} ∈ K^sat` and `M_δ ≠ M_{δ+1}`, as in (a). |
-| Prop 8.1.5 | `prop_8_1_5` (Frames.lean:15482) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 6.1.6(b),(e),(f). |
-| Prop 8.1.6 | `prop_8_1_6` (Frames.lean:16602) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 8.1.5. |
-| Def 9.1.3 | `Frame.HasT` (Frames.lean:17442) | other statements of the tree | -- PROOF-STAGE CHANGE: ENCODING (clarification): union of structures, hence `IsUnionOf`. |
-| Prop 9.1.4 | `prop_9_1_4` (Frames.lean:17453) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 6.1.6. |
-| Prop 9.1.5 | `prop_9_1_5` (Frames.lean:17495) | paper statement in the tree | -- DEVIATION (typo fixed to evident intent): the paper defines `M̄² := ⟨M_{α,1} : α < λ^{+2}⟩`;<br>-- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 6.1.6.<br>-- PROOF-STAGE CHANGE: ENCODING (clarification): unions of structures, hence `IsUnionOf`. With equality of |
-| Prop 9.1.6 | `prop_9_1_6` (Frames.lean:17702) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 6.1.6. |
-| Thm 9.1.7 | `thm_9_1_7` (Frames.lean:18095) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 9.1.4–9.1.6 (`λ^{+2}` must be a limit ordinal).<br>-- PROOF-STAGE CHANGE: hypothesis weakened to its successor case (the paper has |
-| Thm 9.1.13 | `thm_9_1_13` (Frames.lean:18336) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 9.1.4–9.1.6.<br>-- PROOF-STAGE CHANGE: item (c) restated; see NOTES.md, "Changes to review". The paper's text<br>*Note (2026-11-25, manual):* the pairs other than consecutive ones are the gap `ERRATA.md` B.10 (limit ζ needs continuity of `≺⁺`, not formalized; ζ = λ⁺+1 closable by replacing the top model, [Sh:600] 8.5). Lean (c) unchanged; (a) ⇔ (b) ⇔ (c) fully proved for it. |
-| Def 10.1.5 | `Frame.resPlus` (Frames.lean:18463) | definition outside the tree | -- PROOF-STAGE CHANGE: ENCODING: the union runs over representatives with `M₁ ∈ K^sat` (Def 10.1.3 |
-| Prop 10.1.8 | `prop_10_1_8` (Frames.lean:18492) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Thm 7.1.18(b). |
-| Prop 10.1.4 | `prop_10_1_4` (Frames.lean:18542) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `M₀, M₁, M₂ ∈ K^sat`; Def 10.1.3 defines `tp⁺(a, M₀, M₁)` only for<br>-- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 10.1.8. |
-| Prop 10.1.7 | `prop_10_1_7_a` (Frames.lean:18648) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 10.1.8. |
-| Prop 10.1.7 | `prop_10_1_7_b` (Frames.lean:18659) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `M₂, M₂' ∈ K^sat` (Def 10.1.6(2) has `M₂ ∈ K^sat`: the representing |
-| Prop 3.1.9 | `prop_3_1_9` (Frames.lean:20702) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `K_λ ≠ ∅`; false without it (`K = ∅` gives `K_{λ⁺} = ∅`). The paper's |
-| Conjecture 11.1.4 | `Conjecture_11_1_4` (Frames.lean:20846) | main statements | -- DEVIATION (author-confirmed erratum): the paper has "WDmId(λ⁺) is not saturated in λ⁺"; the |
-| Thm 11.1.5 | `thm_11_1_5` (Frames.lean:21189) | paper statement outside the tree | -- DEVIATION (typo fixed to evident intent): conclusion (1) names the frame |
-| Cor 11.1.6 | `cor_11_1_6` (Frames.lean:21213) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `0 < n`. For `n = 0` the conclusion asks for a good `λ`-frame, |
-| Thm 1.0.2 | `thm_1_0_2` (Frames.lean:21278) | main statement | -- PROOF-STAGE CHANGE: added `hunif`: `μ_unif(λ^{+(2+m)}, 2^{λ^{+(1+m)}}) ≤ 2^{λ^{+(2+m)}}` for<br>*Note (2026-11-16, manual):* provenance of `hunif`: see the note under Thm 1.0.2 below. |
+| Prop 1.0.23 | `prop_1_0_23_2` (Frames.lean:167) | paper statement outside the tree | -- PROOF-STAGE CHANGE: symmetry is stated for triples `t = (M, N₀, a)` with `‖N₀‖ < #U`. The |
+| Prop 1.0.30 | `prop_1_0_30` (Frames.lean:339) | paper statement in the tree | -- PROOF-STAGE CHANGE: hypothesis `ℵ₀ ≤ λ` added. For finite `λ` the ordinal `λ⁺` has no club, so |
+| Def 2.1.1 | `Frame.Ax3a` (Frames.lean:577) | main statements | -- PROOF-STAGE CHANGE: the presupposition `M₀ ≼ M₁ ≼ M₃` (needed for `tp(a, Mₙ, M₃)` to be a |
+| Def 2.1.1 | `Frame.Ax3b` (Frames.lean:590) | main statements | -- PROOF-STAGE CHANGE: added `M₃** ∈ K_λ`. Without it 3(b) contradicts 3(a) (which puts every |
+| Prop 2.1.2 | `prop_2_1_2` (Frames.lean:757) | paper statement in the tree | -- DEVIATION (author decision Q3): hypotheses (0)(a) AEC, (1)(b) AP, (3)(a), (3)(b). |
+| Def 2.2.2 | `trivialFrame` (Frames.lean:927) | definition outside the tree | -- PROOF-STAGE CHANGE: the quadruples of the trivial ⨿ also satisfy `M₀ ≼ M₁ ≼ M₃` (the |
+| Prop 2.5.7 | `Prop_2_5_7` (Frames.lean:1277) | main statements | -- PROOF-STAGE CHANGE (author decision): hypothesis weakened from `s.IsSemiGood lam` (original: |
+| Def 2.6.1 | `Frame.nfGe` (Frames.lean:1334) | main statements | -- DEVIATION (author-confirmed erratum): clause (3) as written ("for each `N ∈ K_λ`, |
+| Remark 2.6.7 | `rem_2_6_7` (Frames.lean:1428) | paper statement outside the tree | -- PROOF-STAGE CHANGE: hypothesis `R ⊆ ≼` strengthened to `R ⊆ ≺` (as in Def 2.6.6(2)). With |
+| Thm 3.2.3 | `thm_3_2_3_2` (Frames.lean:2254) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `hM : M ∈ K_λ` (implicit in the paper, where `S^bs(M)` is only |
+| Prop 3.2.5 | `prop_3_2_5` (Frames.lean:2620) | paper statement in the tree | -- DEVIATION (author-confirmed erratum): added `α* < λ⁺` and `M₀ ∈ K_λ`. As written, the statement |
+| Prop 4.1.12 | `prop_4_1_12_2` (Frames.lean:3651) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `hM : M ∈ K_λ` (implicit in the paper, where `S^bs(M)` is only |
+| Prop 5.2.2 | `prop_5_2_2` (Frames.lean:3744) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `M₃ ∈ K_λ` in item (2). Without it the direction `⊗_R → (2)` |
+| Thm 5.3.7 | `thm_5_3_7` (Frames.lean:4234) | paper statement outside the tree | -- DEVIATION (author-confirmed erratum): part (c). The paper omits "`tp(a, N₀, N₁)` is basic" and |
+| Prop 5.3.8 | `prop_5_3_8` (Frames.lean:4254) | paper statement in the tree | -- DEVIATION (author-confirmed erratum): added `α* < λ⁺` and `M_{a,0}, M_{b,0} ∈ K_λ`. As written,<br>-- DEVIATION (author-confirmed: α* ≠ 0 omitted in the paper): added `0 < α*`. |
+| Prop 5.3.9 | `prop_5_3_9_1` (Frames.lean:4451) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `hne`. For `N₁ = N₀` a witness has length `0`, which forces |
+| Prop 5.3.9 | `prop_5_3_9_2` (Frames.lean:4530) | paper statement in the tree | -- DEVIATION (typo fixed to evident intent): the paper's `NF*(M₁, N₁, M₂, N₃)` has base `M₁`; |
+| Prop 5.3.9 | `prop_5_3_9_3` (Frames.lean:4575) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `M₃* ∈ K_λ`; `NF` is a relation on `K_λ` (Def 5.3.2), so the |
+| Def 5.4.1 | `OtMinus` (Frames.lean:4673) | other statements of the tree | -- PROOF-STAGE CHANGE: added `M₄ ∈ K_λ` (`R ⊆ ⁴(K_λ)` in the paper); without it clause (3) is |
+| Def 5.4.2 | `Frame.NFuqE` (Frames.lean:5077) | definition outside the tree | -- DEVIATION (author-confirmed erratum): the element `a` is explicit and the conditions of Def |
+| Prop 5.4.3 | `prop_5_4_3` (Frames.lean:5215) | paper statement outside the tree | -- DEVIATION (author-confirmed erratum): (1) is for `NF^uq` with `a` explicit (`OtMinusE`, in which |
+| Prop 5.4.4 | `prop_5_4_4` (Frames.lean:5390) | paper statement in the tree | -- DEVIATION (typo fixed to evident intent): the paper compares `(f^a_{α*}, id, N^a_{2,α*})` with<br>-- PROOF-STAGE CHANGE: `α ≤ α*` instead of `α < α*`, and the hypotheses `hf0`, `hfai`, `hfbi`. |
+| Prop 3.1.10 | `prop_3_1_10` (Frames.lean:5935) | paper statement outside the tree | -- DEVIATION (author-confirmed): added `θ^a < λ⁺`. The paper has no bound on `θ^a`. The use in |
+| Thm 5.5.1 | `thm_5_5_1` (Frames.lean:7973) | paper statement outside the tree | -- DEVIATION (author-confirmed: α* ≠ 0 omitted in the paper): added `0 < α*`. |
+| Prop 6.1.6 | `prop_6_1_6_b` (Frames.lean:10473) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`. Reflexivity needs a model in `K_λ`; for finite `λ` it can |
+| Prop 6.1.6 | `prop_6_1_6_e` (Frames.lean:10503) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`; false for finite `λ` (see docs/METHOD.md). |
+| Prop 6.1.6 | `prop_6_1_6_f` (Frames.lean:10511) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, used by reflexivity (item (b)); see docs/METHOD.md, |
+| Thm 2.5.8 | `thm_2_5_8_2` (Frames.lean:10994) | paper statement in the tree | -- DEVIATION (author decision Q4): (0)(a) AEC and (0)(b) `LST ≤ λ` added (`h0`); the proof of |
+| Thm 2.6.8 | `thm_2_6_8_1` (Frames.lean:11201) | paper statement in the tree | -- PROOF-STAGE CHANGE: hypothesis `s.WeakLC lam` replaced by local character `s.Ax3c lam`, and `ℵ₀ ≤ λ` added. |
+| Def 7.1.4 | `Frame.PlusWit` (Frames.lean:11414) | other statements of the tree | -- PROOF-STAGE CHANGE: continuity is required only of `⟨N_{0,α}⟩` and `⟨N_{1,α}⟩`; `⟨N^⊕_{1,α}⟩` is<br>-- DEVIATION (author-confirmed erratum): the paper requires all three sequences to be increasing<br>-- PROOF-STAGE CHANGE: ENCODING (clarification, author-confirmed; not an erratum): clause (a) |
+| Prop 7.1.7 | `prop_7_1_7` (Frames.lean:11753) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `N₀ ∈ K_λ` (`hN₀`, author-approved). The paper leaves it implicit; the |
+| Def 7.1.11 | `Frame.IsPlay` (Frames.lean:11981) | definition outside the tree | -- PROOF-STAGE CHANGE (author-approved): plays may be partial (length `γ`), and player 0 must move |
+| Def 7.1.11 | `Frame.Winning` (Frames.lean:12002) | definition outside the tree | -- PROOF-STAGE CHANGE (author-approved): (1) legality of player 1 is required at every stage of |
+| Prop 7.1.12 | `prop_7_1_12_a` (Frames.lean:12728) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `hinf : ℵ₀ ≤ λ`. For finite `λ` with `K_λ = ∅` the statement fails, since |
+| Thm 7.1.18 | `thm_7_1_18_b` (Frames.lean:14585) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, used by reflexivity (as in Prop 6.1.6(f)). |
+| Prop 8.1.3 | `prop_8_1_3_a` (Frames.lean:14781) | paper statement outside the tree | -- DEVIATION (author-confirmed erratum): added `M₁ ∈ K^sat` and `M₀ ≠ M₁`. Def 8.1.2 requires both |
+| Prop 8.1.3 | `prop_8_1_3_b` (Frames.lean:14794) | paper statement in the tree | -- DEVIATION (author-confirmed erratum): added `M_{δ+1} ∈ K^sat` and `M_δ ≠ M_{δ+1}`, as in (a). |
+| Prop 8.1.5 | `prop_8_1_5` (Frames.lean:15480) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 6.1.6(b),(e),(f). |
+| Prop 8.1.6 | `prop_8_1_6` (Frames.lean:16600) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 8.1.5. |
+| Def 9.1.3 | `Frame.HasT` (Frames.lean:17440) | other statements of the tree | -- PROOF-STAGE CHANGE: ENCODING (clarification): union of structures, hence `IsUnionOf`. |
+| Prop 9.1.4 | `prop_9_1_4` (Frames.lean:17451) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 6.1.6. |
+| Prop 9.1.5 | `prop_9_1_5` (Frames.lean:17493) | paper statement in the tree | -- DEVIATION (typo fixed to evident intent): the paper defines `M̄² := ⟨M_{α,1} : α < λ^{+2}⟩`;<br>-- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 6.1.6.<br>-- PROOF-STAGE CHANGE: ENCODING (clarification): unions of structures, hence `IsUnionOf`. With equality of |
+| Prop 9.1.6 | `prop_9_1_6` (Frames.lean:17700) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 6.1.6. |
+| Thm 9.1.7 | `thm_9_1_7` (Frames.lean:18093) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 9.1.4–9.1.6 (`λ^{+2}` must be a limit ordinal).<br>-- PROOF-STAGE CHANGE: hypothesis weakened to its successor case (the paper has |
+| Thm 9.1.13 | `thm_9_1_13` (Frames.lean:18334) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 9.1.4–9.1.6.<br>-- PROOF-STAGE CHANGE: item (c) restated; see docs/METHOD.md. The paper's text<br>*Note (2026-11-25, manual):* the pairs other than consecutive ones are the gap `ERRATA.md` B.10 (limit ζ needs continuity of `≺⁺`, not formalized; ζ = λ⁺+1 closable by replacing the top model, [Sh:600] 8.5). Lean (c) unchanged; (a) ⇔ (b) ⇔ (c) fully proved for it. |
+| Def 10.1.5 | `Frame.resPlus` (Frames.lean:18461) | definition outside the tree | -- PROOF-STAGE CHANGE: ENCODING: the union runs over representatives with `M₁ ∈ K^sat` (Def 10.1.3 |
+| Prop 10.1.8 | `prop_10_1_8` (Frames.lean:18490) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Thm 7.1.18(b). |
+| Prop 10.1.4 | `prop_10_1_4` (Frames.lean:18540) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `M₀, M₁, M₂ ∈ K^sat`; Def 10.1.3 defines `tp⁺(a, M₀, M₁)` only for<br>-- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 10.1.8. |
+| Prop 10.1.7 | `prop_10_1_7_a` (Frames.lean:18646) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `ℵ₀ ≤ λ`, as in Prop 10.1.8. |
+| Prop 10.1.7 | `prop_10_1_7_b` (Frames.lean:18657) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `M₂, M₂' ∈ K^sat` (Def 10.1.6(2) has `M₂ ∈ K^sat`: the representing |
+| Prop 3.1.9 | `prop_3_1_9` (Frames.lean:20700) | paper statement in the tree | -- PROOF-STAGE CHANGE: added `K_λ ≠ ∅`; false without it (`K = ∅` gives `K_{λ⁺} = ∅`). The paper's |
+| Conjecture 11.1.4 | `Conjecture_11_1_4` (Frames.lean:20844) | main statements | -- DEVIATION (author-confirmed erratum): the paper has "WDmId(λ⁺) is not saturated in λ⁺"; the |
+| Thm 11.1.5 | `thm_11_1_5` (Frames.lean:21187) | paper statement outside the tree | -- DEVIATION (typo fixed to evident intent): conclusion (1) names the frame |
+| Cor 11.1.6 | `cor_11_1_6` (Frames.lean:21211) | paper statement outside the tree | -- PROOF-STAGE CHANGE: added `0 < n`. For `n = 0` the conclusion asks for a good `λ`-frame, |
+| Thm 1.0.2 | `thm_1_0_2` (Frames.lean:21276) | main statement | -- PROOF-STAGE CHANGE: added `hunif`: `μ_unif(λ^{+(2+m)}, 2^{λ^{+(1+m)}}) ≤ 2^{λ^{+(2+m)}}` for<br>*Note (2026-11-16, manual):* provenance of `hunif`: see the note under Thm 1.0.2 below. |
 
 ## Main theorems: paper text and Lean statement
 
-### Thm 1.0.1: `thm_1_0_1` (Frames.lean:21261) — flags: unchanged
+### Thm 1.0.1: `thm_1_0_1` (Frames.lean:21259) — flags: unchanged
 
 Paper (l. 492–512):
 
@@ -129,7 +129,7 @@ theorem thm_1_0_1 [C : CitedResults.{u}] (lam : Cardinal.{u}) (hU : Room U lam) 
   exact Frame.thm_11_1_1_123 hU h1 h2 h3 h1.2.kc_nonempty
 ```
 
-### Thm 1.0.2: `thm_1_0_2` (Frames.lean:21278) — flags: **changed in the proof stage**, agent reading
+### Thm 1.0.2: `thm_1_0_2` (Frames.lean:21276) — flags: **changed in the proof stage**, agent reading
 
 Paper (l. 519–531):
 
@@ -185,7 +185,7 @@ theorem thm_1_0_2 [C : CitedResults.{u}] (lam : Cardinal.{u}) (hU : Room U lam) 
 * Status of confirmation: not confirmed. Source: personal communication from Prof. Saharon Shelah (the claim is easy, per Shelah). There is no written source we checked. Not verified by the formalization. Not independently checked by the author.
 * **Open item: to be checked by the author at the end.** See `ERRATA.md` C.8 and item 10 of "To be confirmed by the author".
 
-### Thm 11.1.1: `thm_11_1_1` (Frames.lean:21171) — flags: unchanged
+### Thm 11.1.1: `thm_11_1_1` (Frames.lean:21169) — flags: unchanged
 
 Paper (l. 7877–7897):
 
@@ -232,7 +232,7 @@ theorem thm_11_1_1 [C : CitedResults.{u}] (lam : Cardinal.{u}) (hU : Room U lam)
   exact Frame.thm_11_1_1_123 hU h1 h2 h3 h1.2.kc_nonempty
 ```
 
-### Thm 11.1.7: `thm_11_1_7` (Frames.lean:21246) — flags: agent reading
+### Thm 11.1.7: `thm_11_1_7` (Frames.lean:21244) — flags: agent reading
 
 Paper (l. 8096–8110):
 
@@ -802,62 +802,62 @@ Definitions in the statements of the main theorems:
 | `Saturated` | Def 1.0.25 | AEC.lean:423 | unchanged |
 | `Homogeneous` | Def 1.0.28 | AEC.lean:428 | unchanged |
 | `Fact_1_0_18` | Fact 1.0.18 | Frames.lean:87 | agent reading, cited (hypothesis via `CitedResults`) |
-| `Fact_1_0_18_up` | Fact 1.0.18 | Frames.lean:104 | cited (hypothesis via `CitedResults`) |
-| `Prop_1_0_31` | Prop 1.0.31 | Frames.lean:473 | cited (hypothesis via `CitedResults`) |
-| `Thm_1_0_32_1` | Thm 1.0.32 | Frames.lean:485 | cited (hypothesis via `CitedResults`) |
-| `Thm_1_0_32_2` | Thm 1.0.32 | Frames.lean:496 | cited (hypothesis via `CitedResults`) |
-| `Frame` | Def 2.1.1 | Frames.lean:511 | unchanged |
-| `Frame.NotFork` | Def 2.1.1 | Frames.lean:525 | unchanged |
-| `Frame.IsNFExt` | Def 2.5.5 | Frames.lean:530 | unchanged |
-| `Frame.Ax0a` | Def 2.1.1 | Frames.lean:534 | unchanged |
-| `Frame.Ax0b` | Def 2.1.1 | Frames.lean:537 | unchanged |
-| `Frame.Ax1a` | Def 2.1.1 | Frames.lean:540 | unchanged |
-| `Frame.Ax1b` | Def 2.1.1 | Frames.lean:543 | unchanged |
-| `Frame.Ax1c` | Def 2.1.1 | Frames.lean:548 | agent reading |
-| `Frame.Ax2a` | Def 2.1.1 | Frames.lean:551 | unchanged |
-| `Frame.Ax2b` | Def 2.1.1 | Frames.lean:559 | agent reading |
-| `Frame.Ax2c` | Def 2.1.1 | Frames.lean:565 | unchanged |
-| `Frame.BasicStab` | Def 2.1.1 | Frames.lean:571 | unchanged |
-| `Frame.Ax3a` | Def 2.1.1 | Frames.lean:578 | **changed in the proof stage** |
-| `Frame.Ax3b` | Def 2.1.1 | Frames.lean:591 | **changed in the proof stage** |
-| `Frame.Ax3c` | Def 2.1.1 | Frames.lean:600 | unchanged |
-| `Frame.Ax3d` | Def 2.1.1 | Frames.lean:607 | unchanged |
-| `Frame.Ax3e` | Def 2.1.1 | Frames.lean:612 | unchanged |
-| `Frame.Ax3f` | Def 2.1.1 | Frames.lean:620 | unchanged |
-| `Frame.Ax3g` | Def 2.1.1 | Frames.lean:625 | unchanged |
-| `Frame.Core` | Def 2.1.1 | Frames.lean:634 | encoding |
-| `Frame.IsGood` | Def 2.1.1 | Frames.lean:649 | unchanged |
-| `Frame.IsSemiGood` | Def 2.1.3 | Frames.lean:654 | unchanged |
-| `Conjugate` | Def 2.5.1 | Frames.lean:1233 | unchanged |
-| `ConjProp` | Def 2.5.5 | Frames.lean:1251 | unchanged |
-| `Prop_2_5_7` | Prop 2.5.7 | Frames.lean:1278 | **changed in the proof stage**, cited (hypothesis via `CitedResults`) |
-| `CitedResults` | — | Frames.lean:1294 | unchanged |
-| `Frame.nfGe` | Def 2.6.1 | Frames.lean:1336 | **deviation (author-confirmed / typo)** |
-| `Frame.NotForkGe` | Def 2.6.2 | Frames.lean:1346 | agent reading |
-| `Frame.SbsGt` | Def 2.6.4 | Frames.lean:1352 | unchanged |
-| `Frame.K3bs` | Def 3.1.1 | Frames.lean:1541 | unchanged |
-| `Frame.leBs` | Def 3.1.1 | Frames.lean:1547 | unchanged |
-| `Frame.Dense` | Def 3.2.1 | Frames.lean:2139 | unchanged |
-| `Amalg` | — | Frames.lean:3437 | encoding |
-| `AmalgEquiv` | Def 4.1.2 | Frames.lean:3442 | unchanged |
-| `Frame.UqCond` | Def 4.1.5 | Frames.lean:3501 | unchanged |
-| `Frame.K3uq` | Def 4.1.5 | Frames.lean:3508 | unchanged |
-| `QRel` | — | Frames.lean:3680 | encoding |
-| `Frame.NFStarWit` | Def 5.3.1 | Frames.lean:3827 | unchanged |
-| `Frame.NFStar` | Def 5.3.1 | Frames.lean:3840 | unchanged |
-| `Frame.NF` | Def 5.3.2 | Frames.lean:3846 | unchanged |
-| `Frame.NFhat` | Def 6.1.2 | Frames.lean:8244 | encoding |
-| `Frame.leNF` | Def 6.1.4 | Frames.lean:8258 | unchanged |
-| `Frame.Ksat` | Def 7.1.2 | Frames.lean:11393 | unchanged |
-| `Frame.satKSys` | — | Frames.lean:11396 | unchanged |
-| `Frame.upKSys` | — | Frames.lean:18449 | unchanged |
-| `Frame.tpPlus` | Def 10.1.3 | Frames.lean:18454 | unchanged |
-| `Frame.SbsPlus` | Def 10.1.6 | Frames.lean:18468 | unchanged |
-| `Frame.nfPlus` | Def 10.1.6 | Frames.lean:18477 | encoding |
-| `Frame.splus` | Def 10.1.6 | Frames.lean:18482 | unchanged |
-| `WDmId` | Def 11.1.2 | Frames.lean:20824 | encoding |
-| `NotSaturatedIn` | Def 11.1.3 | Frames.lean:20835 | agent reading |
-| `Conjecture_11_1_4` | Conjecture 11.1.4 | Frames.lean:20846 | **deviation (author-confirmed / typo)** |
+| `Fact_1_0_18_up` | Fact 1.0.18 | Frames.lean:103 | cited (hypothesis via `CitedResults`) |
+| `Prop_1_0_31` | Prop 1.0.31 | Frames.lean:472 | cited (hypothesis via `CitedResults`) |
+| `Thm_1_0_32_1` | Thm 1.0.32 | Frames.lean:484 | cited (hypothesis via `CitedResults`) |
+| `Thm_1_0_32_2` | Thm 1.0.32 | Frames.lean:495 | cited (hypothesis via `CitedResults`) |
+| `Frame` | Def 2.1.1 | Frames.lean:510 | unchanged |
+| `Frame.NotFork` | Def 2.1.1 | Frames.lean:524 | unchanged |
+| `Frame.IsNFExt` | Def 2.5.5 | Frames.lean:529 | unchanged |
+| `Frame.Ax0a` | Def 2.1.1 | Frames.lean:533 | unchanged |
+| `Frame.Ax0b` | Def 2.1.1 | Frames.lean:536 | unchanged |
+| `Frame.Ax1a` | Def 2.1.1 | Frames.lean:539 | unchanged |
+| `Frame.Ax1b` | Def 2.1.1 | Frames.lean:542 | unchanged |
+| `Frame.Ax1c` | Def 2.1.1 | Frames.lean:547 | agent reading |
+| `Frame.Ax2a` | Def 2.1.1 | Frames.lean:550 | unchanged |
+| `Frame.Ax2b` | Def 2.1.1 | Frames.lean:558 | agent reading |
+| `Frame.Ax2c` | Def 2.1.1 | Frames.lean:564 | unchanged |
+| `Frame.BasicStab` | Def 2.1.1 | Frames.lean:570 | unchanged |
+| `Frame.Ax3a` | Def 2.1.1 | Frames.lean:577 | **changed in the proof stage** |
+| `Frame.Ax3b` | Def 2.1.1 | Frames.lean:590 | **changed in the proof stage** |
+| `Frame.Ax3c` | Def 2.1.1 | Frames.lean:599 | unchanged |
+| `Frame.Ax3d` | Def 2.1.1 | Frames.lean:606 | unchanged |
+| `Frame.Ax3e` | Def 2.1.1 | Frames.lean:611 | unchanged |
+| `Frame.Ax3f` | Def 2.1.1 | Frames.lean:619 | unchanged |
+| `Frame.Ax3g` | Def 2.1.1 | Frames.lean:624 | unchanged |
+| `Frame.Core` | Def 2.1.1 | Frames.lean:633 | encoding |
+| `Frame.IsGood` | Def 2.1.1 | Frames.lean:648 | unchanged |
+| `Frame.IsSemiGood` | Def 2.1.3 | Frames.lean:653 | unchanged |
+| `Conjugate` | Def 2.5.1 | Frames.lean:1232 | unchanged |
+| `ConjProp` | Def 2.5.5 | Frames.lean:1250 | unchanged |
+| `Prop_2_5_7` | Prop 2.5.7 | Frames.lean:1277 | **changed in the proof stage**, cited (hypothesis via `CitedResults`) |
+| `CitedResults` | — | Frames.lean:1293 | unchanged |
+| `Frame.nfGe` | Def 2.6.1 | Frames.lean:1334 | **deviation (author-confirmed / typo)** |
+| `Frame.NotForkGe` | Def 2.6.2 | Frames.lean:1344 | agent reading |
+| `Frame.SbsGt` | Def 2.6.4 | Frames.lean:1350 | unchanged |
+| `Frame.K3bs` | Def 3.1.1 | Frames.lean:1539 | unchanged |
+| `Frame.leBs` | Def 3.1.1 | Frames.lean:1545 | unchanged |
+| `Frame.Dense` | Def 3.2.1 | Frames.lean:2137 | unchanged |
+| `Amalg` | — | Frames.lean:3435 | encoding |
+| `AmalgEquiv` | Def 4.1.2 | Frames.lean:3440 | unchanged |
+| `Frame.UqCond` | Def 4.1.5 | Frames.lean:3499 | unchanged |
+| `Frame.K3uq` | Def 4.1.5 | Frames.lean:3506 | unchanged |
+| `QRel` | — | Frames.lean:3678 | encoding |
+| `Frame.NFStarWit` | Def 5.3.1 | Frames.lean:3825 | unchanged |
+| `Frame.NFStar` | Def 5.3.1 | Frames.lean:3838 | unchanged |
+| `Frame.NF` | Def 5.3.2 | Frames.lean:3844 | unchanged |
+| `Frame.NFhat` | Def 6.1.2 | Frames.lean:8242 | encoding |
+| `Frame.leNF` | Def 6.1.4 | Frames.lean:8256 | unchanged |
+| `Frame.Ksat` | Def 7.1.2 | Frames.lean:11391 | unchanged |
+| `Frame.satKSys` | — | Frames.lean:11394 | unchanged |
+| `Frame.upKSys` | — | Frames.lean:18447 | unchanged |
+| `Frame.tpPlus` | Def 10.1.3 | Frames.lean:18452 | unchanged |
+| `Frame.SbsPlus` | Def 10.1.6 | Frames.lean:18466 | unchanged |
+| `Frame.nfPlus` | Def 10.1.6 | Frames.lean:18475 | encoding |
+| `Frame.splus` | Def 10.1.6 | Frames.lean:18480 | unchanged |
+| `WDmId` | Def 11.1.2 | Frames.lean:20822 | encoding |
+| `NotSaturatedIn` | Def 11.1.3 | Frames.lean:20833 | agent reading |
+| `Conjecture_11_1_4` | Conjecture 11.1.4 | Frames.lean:20844 | **deviation (author-confirmed / typo)** |
 
 Definitions used only by the other paper statements of the tree:
 
@@ -867,37 +867,37 @@ Definitions used only by the other paper statements of the tree:
 | `FunContinuous` | — | AEC.lean:168 | unchanged |
 | `ClubEq` | Def 9.1.3 | AEC.lean:184 | unchanged |
 | `KSys.K3c` | Def 1.0.21 | AEC.lean:365 | unchanged |
-| `Frame.IsSemiGoodExceptLC` | Def 2.6.5 | Frames.lean:661 | unchanged |
-| `Frame.Cond12` | Thm 2.5.8 | Frames.lean:1317 | unchanged |
-| `Frame.SbsGe` | Def 2.6.4 | Frames.lean:1356 | unchanged |
-| `Hyp_3_0_1` | Hypothesis 3.0.1 | Frames.lean:1533 | unchanged |
-| `IsoClosedTri` | Def 3.2.1 | Frames.lean:2134 | unchanged |
-| `Frame.ExistProp` | Def 3.2.1 | Frames.lean:2144 | unchanged |
-| `IsDecomp` | Def 3.2.2 | Frames.lean:2154 | agent reading |
-| `Decomposable` | Def 3.2.2 | Frames.lean:2160 | unchanged |
-| `Frame.K3r` | Def 3.3.2 | Frames.lean:2858 | unchanged |
-| `Hyp_4_1_1` | Hypothesis 4.1.1 | Frames.lean:3434 | unchanged |
-| `Hyp_5_1_1` | Hypothesis 5.1.1 | Frames.lean:3676 | unchanged |
-| `OtDom` | Def 5.2.1 | Frames.lean:3688 | unchanged |
-| `OtB` | Def 5.2.1 | Frames.lean:3698 | unchanged |
-| `JointEmbOver` | Def 1.0.20 | Frames.lean:3712 | unchanged |
-| `Respects` | Def 5.2.6 | Frames.lean:3815 | unchanged |
-| `OtMinus` | Def 5.4.1 | Frames.lean:4675 | **changed in the proof stage**, agent reading |
-| `Hyp_6_1_1` | Hypothesis 6.1.1 | Frames.lean:8234 | unchanged |
-| `Frame.ltNF` | Def 1.0.14 | Frames.lean:8263 | unchanged |
-| `Frame.nfKSys` | — | Frames.lean:8266 | unchanged |
-| `Hyp_7_1_1` | Hypothesis 7.1.1 | Frames.lean:11386 | unchanged |
-| `Frame.PlusWit` | Def 7.1.4 | Frames.lean:11416 | **changed in the proof stage**, **deviation (author-confirmed / typo)**, encoding, agent reading |
-| `Frame.ltPlus` | Def 7.1.4 | Frames.lean:11433 | unchanged |
-| `Hyp_8_1_1` | Hypothesis 8.1.1 | Frames.lean:14619 | unchanged |
-| `Frame.leOt` | Def 8.1.2 | Frames.lean:14624 | unchanged |
-| `Hyp_9_1_1` | Hypothesis 9.1.1 | Frames.lean:17426 | unchanged |
-| `Frame.IncNFSucc` | Def 9.1.2 | Frames.lean:17430 | unchanged |
-| `Frame.TSet` | Def 9.1.3 | Frames.lean:17436 | unchanged |
-| `Frame.HasT` | Def 9.1.3 | Frames.lean:17442 | **changed in the proof stage**, encoding |
-| `StatCof` | — | Frames.lean:17582 | unchanged |
-| `Frame.Successful` | Def 10.1.1 | Frames.lean:18436 | agent reading |
-| `Hyp_10_1_2` | Hypothesis 10.1.2 | Frames.lean:18441 | unchanged |
+| `Frame.IsSemiGoodExceptLC` | Def 2.6.5 | Frames.lean:660 | unchanged |
+| `Frame.Cond12` | Thm 2.5.8 | Frames.lean:1315 | unchanged |
+| `Frame.SbsGe` | Def 2.6.4 | Frames.lean:1354 | unchanged |
+| `Hyp_3_0_1` | Hypothesis 3.0.1 | Frames.lean:1531 | unchanged |
+| `IsoClosedTri` | Def 3.2.1 | Frames.lean:2132 | unchanged |
+| `Frame.ExistProp` | Def 3.2.1 | Frames.lean:2142 | unchanged |
+| `IsDecomp` | Def 3.2.2 | Frames.lean:2152 | agent reading |
+| `Decomposable` | Def 3.2.2 | Frames.lean:2158 | unchanged |
+| `Frame.K3r` | Def 3.3.2 | Frames.lean:2856 | unchanged |
+| `Hyp_4_1_1` | Hypothesis 4.1.1 | Frames.lean:3432 | unchanged |
+| `Hyp_5_1_1` | Hypothesis 5.1.1 | Frames.lean:3674 | unchanged |
+| `OtDom` | Def 5.2.1 | Frames.lean:3686 | unchanged |
+| `OtB` | Def 5.2.1 | Frames.lean:3696 | unchanged |
+| `JointEmbOver` | Def 1.0.20 | Frames.lean:3710 | unchanged |
+| `Respects` | Def 5.2.6 | Frames.lean:3813 | unchanged |
+| `OtMinus` | Def 5.4.1 | Frames.lean:4673 | **changed in the proof stage**, agent reading |
+| `Hyp_6_1_1` | Hypothesis 6.1.1 | Frames.lean:8232 | unchanged |
+| `Frame.ltNF` | Def 1.0.14 | Frames.lean:8261 | unchanged |
+| `Frame.nfKSys` | — | Frames.lean:8264 | unchanged |
+| `Hyp_7_1_1` | Hypothesis 7.1.1 | Frames.lean:11384 | unchanged |
+| `Frame.PlusWit` | Def 7.1.4 | Frames.lean:11414 | **changed in the proof stage**, **deviation (author-confirmed / typo)**, encoding, agent reading |
+| `Frame.ltPlus` | Def 7.1.4 | Frames.lean:11431 | unchanged |
+| `Hyp_8_1_1` | Hypothesis 8.1.1 | Frames.lean:14617 | unchanged |
+| `Frame.leOt` | Def 8.1.2 | Frames.lean:14622 | unchanged |
+| `Hyp_9_1_1` | Hypothesis 9.1.1 | Frames.lean:17424 | unchanged |
+| `Frame.IncNFSucc` | Def 9.1.2 | Frames.lean:17428 | unchanged |
+| `Frame.TSet` | Def 9.1.3 | Frames.lean:17434 | unchanged |
+| `Frame.HasT` | Def 9.1.3 | Frames.lean:17440 | **changed in the proof stage**, encoding |
+| `StatCof` | — | Frames.lean:17580 | unchanged |
+| `Frame.Successful` | Def 10.1.1 | Frames.lean:18434 | agent reading |
+| `Hyp_10_1_2` | Hypothesis 10.1.2 | Frames.lean:18439 | unchanged |
 
 ## (b) Each definition: original text and Lean statement
 
@@ -1194,7 +1194,7 @@ Lean (AEC.lean:192):
 
 ```lean
 -- DEVIATION (added hypothesis, encoding): every theorem that involves a cardinal `lam` takes
--- `hU : Room U lam`. It is not a hypothesis of the paper (see NOTES.md, B.1).
+-- `hU : Room U lam`. It is not a hypothesis of the paper (see docs/ERRATA.md, D.1).
 /-- ENCODING hypothesis on the ambient type: `#U` is a strong limit cardinal above `lam`, so
 every model the paper constructs (of cardinality `λ^{+n}`, or `2^{λ^{+n}}` many models) has
 isomorphic copies inside `U`. Not a hypothesis of the paper. -/
@@ -1949,7 +1949,7 @@ Lean (AEC.lean:328):
 -- Im(f) ≼ N" (an embedding must preserve the structure).
 /-- Def 1.0.19(1): `f : M → N` is a `≼`-embedding: `M, N ∈ K`, `f` is injective on `M` and
 `Im(f) ≼ N`. ENCODING/READING: `f` is required to be an isomorphism of `M` onto the model
-`Im(f) ≼ N` (see NOTES.md, B.4). -/
+`Im(f) ≼ N` (see docs/METHOD.md). -/
 def IsEmb (S : KSys U L) (f : U → U) (M N : Model U L) : Prop :=
   M ∈ S.K ∧ N ∈ S.K ∧ ∃ M' : Model U L, S.le M' N ∧ IsoOn f M M'
 ```
@@ -2539,7 +2539,7 @@ $LST(K,\preceq)^{up}=\lambda$.
 \end{fact}
 ```
 
-Lean (Frames.lean:104):
+Lean (Frames.lean:103):
 
 ```lean
 /-- Fact 1.0.18, clauses widened by the author ([Sh:h].II Lemma 1.23, cited, not proved in the
@@ -2549,8 +2549,7 @@ by the author to be part of the source): for an AEC `(K, ≼)`, (i) a `≼`-dire
 `K` is a model of `K`, each member `≼` the union (so `K^up ⊆ K`); (ii) `≼^up ⊆ ≼` (the extended
 relation agrees with the original one), for models of `K^up` of any size. Used in the paper's
 Section 2.1 ("`K⁺ ⊆ K`") and in Cor 11.1.6, Thm 11.1.7, Thm 1.0.2. -/
--- CITED: [Sh:h].II Lemma 1.23 (clauses (i), (ii) confirmed by the author; see NOTES.md, "Cited
--- results widened by the author").
+-- CITED: [Sh:h].II Lemma 1.23 (clauses (i), (ii) confirmed by the author; see docs/METHOD.md).
 -- CITED: stated as a `Prop`, assumed through the field `CitedResults.fact_1_0_18_up`.
 def Fact_1_0_18_up : Prop :=
   ∀ {U : Type u} {L : Language.{u, u}}
@@ -2576,7 +2575,7 @@ model in $\lambda^+$ over $\lambda$.
 \end{proposition}
 ```
 
-Lean (Frames.lean:473):
+Lean (Frames.lean:472):
 
 ```lean
 /-- Prop 1.0.31 (saturativity = model homogeneity; by [Sh:h].II Lemma 1.14): "Let `(K, ≼)` be an
@@ -2611,7 +2610,7 @@ M_2$ are isomorphic.
 \end{theorem}
 ```
 
-Lean (Frames.lean:485):
+Lean (Frames.lean:484):
 
 ```lean
 /-- Thm 1.0.32(1) (uniqueness of the saturated model; [Sh:h].II Lemma 1.14): "Suppose
@@ -2647,7 +2646,7 @@ M_2$ are isomorphic.
 \end{theorem}
 ```
 
-Lean (Frames.lean:496):
+Lean (Frames.lean:495):
 
 ```lean
 /-- Thm 1.0.32(2): "If `M₁, M₂` are saturated in `λ⁺` over `λ` and `(K_λ, ≼ ↾ K_λ)` satisfies
@@ -2715,7 +2714,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:511):
+Lean (Frames.lean:510):
 
 ```lean
 /-- Def 2.1.1 / 2.1.3: the data of a frame `s = (K, ≼, S^bs, ⨿)`. `Sbs M` is `S^bs(M)` (a set of
@@ -2782,7 +2781,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:525):
+Lean (Frames.lean:524):
 
 ```lean
 /-- Def 2.1.1(3)(b), interpretation: "`p ∈ S^bs(N)` does not fork over `M`" means "for some
@@ -2806,7 +2805,7 @@ conjugate.
 \end{definition}
 ```
 
-Lean (Frames.lean:530):
+Lean (Frames.lean:529):
 
 ```lean
 /-- `p₂` is the non-forking extension of `p₁` (used in Def 2.5.5, 7.1.4): `p₂` does not fork
@@ -2868,7 +2867,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:534):
+Lean (Frames.lean:533):
 
 ```lean
 /-- Def 2.1.1(0)(a): `(K, ≼)` is an AEC. -/
@@ -2928,7 +2927,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:537):
+Lean (Frames.lean:536):
 
 ```lean
 /-- Def 2.1.1(0)(b): `LST(K, ≼) ≤ λ`. -/
@@ -2988,7 +2987,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:540):
+Lean (Frames.lean:539):
 
 ```lean
 /-- Def 2.1.1(1)(a): `(K_λ, ≼ ↾ K_λ)` satisfies the joint embedding property. -/
@@ -3048,7 +3047,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:543):
+Lean (Frames.lean:542):
 
 ```lean
 /-- Def 2.1.1(1)(b): `(K_λ, ≼ ↾ K_λ)` satisfies the amalgamation property. -/
@@ -3108,12 +3107,12 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:548):
+Lean (Frames.lean:547):
 
 ```lean
 -- AGENT-CHOICE (reading): "no ≼-maximal model in K_λ" is maximality inside `(K_λ, ≼ ↾ K_λ)`.
 /-- Def 2.1.1(1)(c): there is no `≼`-maximal model in `K_λ` (maximality inside
-`(K_λ, ≼ ↾ K_λ)`, see NOTES.md). -/
+`(K_λ, ≼ ↾ K_λ)`, see docs/METHOD.md). -/
 def Ax1c : Prop := ∀ M ∈ s.S.Kc lam, ¬ IsMaximal (s.S.restrict (s.S.Kc lam)) M
 ```
 
@@ -3170,7 +3169,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:551):
+Lean (Frames.lean:550):
 
 ```lean
 /-- Def 2.1.1(2)(a): `S^bs(M) ⊆ S^na(M) = {tp(a, M, N) : M ≺ N ∈ K_λ, a ∈ N - M}`. -/
@@ -3233,7 +3232,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:559):
+Lean (Frames.lean:558):
 
 ```lean
 -- AGENT-CHOICE (added hypothesis): `M ∈ K_λ`, since `S^bs` is a function with domain `K_λ`; the
@@ -3298,7 +3297,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:565):
+Lean (Frames.lean:564):
 
 ```lean
 /-- Def 2.1.1(2)(c): density of the basic types. -/
@@ -3360,7 +3359,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:571):
+Lean (Frames.lean:570):
 
 ```lean
 /-- Def 2.1.1(2)(d) with bound `μ`: `|S^bs(M)| ≤ μ` for `M ∈ K_λ`. Basic stability is
@@ -3421,7 +3420,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:578):
+Lean (Frames.lean:577):
 
 ```lean
 -- PROOF-STAGE CHANGE: the presupposition `M₀ ≼ M₁ ≼ M₃` (needed for `tp(a, Mₙ, M₃)` to be a
@@ -3491,7 +3490,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:591):
+Lean (Frames.lean:590):
 
 ```lean
 /-- Def 2.1.1(3)(b), monotonicity: if `M₀ ≼ M₀* ≼ M₁* ≼ M₁ ≼ M₃ ≼ M₃*` and
@@ -3559,7 +3558,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:600):
+Lean (Frames.lean:599):
 
 ```lean
 /-- Def 2.1.1(3)(c), local character: for every limit `δ < λ⁺`, if `⟨M_α : α ≤ δ+1⟩` is an
@@ -3625,7 +3624,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:607):
+Lean (Frames.lean:606):
 
 ```lean
 /-- Def 2.1.1(3)(d), uniqueness of the non-forking extension. -/
@@ -3687,7 +3686,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:612):
+Lean (Frames.lean:611):
 
 ```lean
 /-- Def 2.1.1(3)(e), symmetry. -/
@@ -3752,7 +3751,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:620):
+Lean (Frames.lean:619):
 
 ```lean
 /-- Def 2.1.1(3)(f), existence of a non-forking extension. -/
@@ -3814,7 +3813,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:625):
+Lean (Frames.lean:624):
 
 ```lean
 /-- Def 2.1.1(3)(g), continuity (`δ` limit by the convention on the letter `δ`). -/
@@ -3879,7 +3878,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:634):
+Lean (Frames.lean:633):
 
 ```lean
 /-- ENCODING. The axioms of Def 2.1.1 shared by all variants of frames in the paper: all of them
@@ -3952,7 +3951,7 @@ M_{\delta+1})$ does not fork over $M_\alpha$. \item Uniqueness of
 … (truncated; see the .tex)
 ```
 
-Lean (Frames.lean:649):
+Lean (Frames.lean:648):
 
 ```lean
 /-- Def 2.1.1: `s` is a good `λ`-frame. -/
@@ -3977,7 +3976,7 @@ semi-good $\lambda$-frame for some $\lambda$.
 \end{definition}
 ```
 
-Lean (Frames.lean:654):
+Lean (Frames.lean:653):
 
 ```lean
 /-- Def 2.1.3: `s` is a semi-good `λ`-frame: the axioms of a good `λ`-frame with basic
@@ -4003,7 +4002,7 @@ does not fork over $M_\alpha$.
 \end{definition}
 ```
 
-Lean (Frames.lean:661):
+Lean (Frames.lean:660):
 
 ```lean
 /-- "Semi-good `λ`-frame, except local character" (Def 2.6.5, 2.6.6, Thm 2.6.8). -/
@@ -4028,7 +4027,7 @@ is an isomorphism. \item $f(a_0)=a_1$.
 \end{definition}
 ```
 
-Lean (Frames.lean:1233):
+Lean (Frames.lean:1232):
 
 ```lean
 /-- Def 2.5.1: `p₀ ∈ S(M₀)`, `p₁ ∈ S(M₁)` are conjugate: for some `a₀, M₀⁺, a₁, M₁⁺, f`,
@@ -4056,7 +4055,7 @@ conjugate.
 \end{definition}
 ```
 
-Lean (Frames.lean:1251):
+Lean (Frames.lean:1250):
 
 ```lean
 /-- Def 2.5.5: the semi-good `λ`-frame `s` satisfies the conjugation property: `K_λ` is
@@ -4087,7 +4086,7 @@ does not fork over $M_0$.
  \end{proposition}
 ```
 
-Lean (Frames.lean:1278):
+Lean (Frames.lean:1277):
 
 ```lean
 /-- Prop 2.5.7 (by [Sh:h].II Claim 2.16, cited): if `s` satisfies the axioms of a semi-good
@@ -4116,7 +4115,7 @@ def Prop_2_5_7 : Prop :=
 
 ### `CitedResults` — no paper item — unchanged
 
-Lean (Frames.lean:1294):
+Lean (Frames.lean:1293):
 
 ```lean
 /-- The results that the paper cites from the literature and does not prove, collected as one
@@ -4124,11 +4123,10 @@ hypothesis (one field per cited result; none is proved here). Every theorem that
 directly or through other theorems, takes the parameter `[C : CitedResults]`. -/
 class CitedResults : Prop where
   /-- Fact 1.0.18 (`Fact_1_0_18`). Source: [Sh:h].II Lemma 1.23 (paper: "Fact [Lemma 1.23 in
-  [Sh:h].II]"), with the hypothesis `K ≠ ∅` added (section F of NOTES.md). -/
+  [Sh:h].II]"), with the hypothesis `K ≠ ∅` added (see docs/METHOD.md, cited results). -/
   fact_1_0_18 : Fact_1_0_18.{u}
   /-- Fact 1.0.18 with the clauses widened by the author (`Fact_1_0_18_up`). Source: [Sh:h].II
-  Lemma 1.23; clauses (i), (ii) confirmed by the author to be part of the source (NOTES.md, "Cited
-  results widened by the author"). -/
+  Lemma 1.23; clauses (i), (ii) confirmed by the author to be part of the source (docs/METHOD.md). -/
   fact_1_0_18_up : Fact_1_0_18_up.{u}
   /-- Prop 1.0.31, saturativity = model homogeneity (`Prop_1_0_31`). Source: [Sh:h].II Lemma 1.14
   (paper: "By Lemma 1.14 in [Sh:h].II"). -/
@@ -4141,7 +4139,7 @@ class CitedResults : Prop where
   thm_1_0_32_2 : Thm_1_0_32_2.{u}
   /-- Prop 2.5.7, amalgamation with non-forking on both sides (`Prop_2_5_7`). Source: [Sh:h].II
   Claim 2.16 (paper: "By Claim 2.16 in [Sh:h].II"), with the hypothesis weakened as decided by
-  the author (NOTES.md, "Cited results used under weaker hypotheses than stated"). -/
+  the author (docs/METHOD.md). -/
   prop_2_5_7 : Prop_2_5_7.{u}
 ```
 
@@ -4182,7 +4180,7 @@ that $|S^{bs}(M)| \leq \lambda^+$, but the point is that $|S(M)| \leq
 \end{theorem}
 ```
 
-Lean (Frames.lean:1317):
+Lean (Frames.lean:1315):
 
 ```lean
 /-- "`s` satisfies conditions 1 and 2 of a semi-good `λ`-frame" (Thm 2.5.8). -/
@@ -4209,7 +4207,7 @@ K_\lambda$, $N_0 \bigcup \{a\} \subseteq N \preceq M_1 \Rightarrow
 \end{definition}
 ```
 
-Lean (Frames.lean:1336):
+Lean (Frames.lean:1334):
 
 ```lean
 -- DEVIATION (author-confirmed erratum): clause (3) as written ("for each `N ∈ K_λ`,
@@ -4242,12 +4240,12 @@ when for some triple $(M_1,M_2,a) \in p$ we have $\dnf^{\leq
 \end{definition}
 ```
 
-Lean (Frames.lean:1346):
+Lean (Frames.lean:1344):
 
 ```lean
 -- AGENT-CHOICE (reading): the undefined symbol `⨿^{≤λ}` is read as `⨿^{≥λ}` (Def 2.6.1).
 /-- Def 2.6.2: for `M₀ ≼ M₁` in `K_{≥λ}` and `p ∈ S(M₁)`, `p` does not fork over `M₀` when for
-some triple `(M₁, M₂, a) ∈ p`, `⨿^{≤λ}(M₀, a, M₁, M₂)` (read as `⨿^{≥λ}`, NOTES.md). -/
+some triple `(M₁, M₂, a) ∈ p`, `⨿^{≤λ}(M₀, a, M₁, M₂)` (read as `⨿^{≥λ}`, docs/METHOD.md). -/
 def NotForkGe (M₀ M₁ : Model U L) (p : Set (Tri U L)) : Prop :=
   M₀ ∈ s.S.KGe lam ∧ M₁ ∈ s.S.KGe lam ∧ s.S.le M₀ M₁ ∧ p ∈ SAll s.S lam M₁ ∧
     ∃ (M₂ : Model U L) (a : U), (M₁, M₂, a) ∈ p ∧ s.nfGe lam M₀ a M₁ M₂
@@ -4269,7 +4267,7 @@ cardinality of $M$).
 \end{definition}
 ```
 
-Lean (Frames.lean:1352):
+Lean (Frames.lean:1350):
 
 ```lean
 /-- Def 2.6.4: for `M ∈ K_{>λ}`, `S^bs_{>λ}(M)`: types `p ∈ S(M)` that do not fork over some
@@ -4294,7 +4292,7 @@ cardinality of $M$).
 \end{definition}
 ```
 
-Lean (Frames.lean:1356):
+Lean (Frames.lean:1354):
 
 ```lean
 /-- Def 2.6.4: `S^bs_{≥λ}(M)`: `S^bs(M)` if `‖M‖ = λ`, `S^bs_{>λ}(M)` if `‖M‖ > λ`. -/
@@ -4313,7 +4311,7 @@ stability and local character.
 \end{hypothesis}
 ```
 
-Lean (Frames.lean:1533):
+Lean (Frames.lean:1531):
 
 ```lean
 /-- Hypothesis 3.0.1: `s` is a semi-good `λ`-frame, except basic almost stability and local
@@ -4338,7 +4336,7 @@ $M\preceq M^*,\ N\preceq N^*,\ a^*=a$
 \end{definition}
 ```
 
-Lean (Frames.lean:1541):
+Lean (Frames.lean:1539):
 
 ```lean
 /-- Def 3.1.1(1): `K^{3,bs} = {(M, N, a) : M, N ∈ K_λ, a ∈ N - M, tp(a, M, N) ∈ S^bs(M)}`. -/
@@ -4363,7 +4361,7 @@ $M\preceq M^*,\ N\preceq N^*,\ a^*=a$
 \end{definition}
 ```
 
-Lean (Frames.lean:1547):
+Lean (Frames.lean:1545):
 
 ```lean
 /-- Def 3.1.1(2): `(M, N, a) ≼_bs (M*, N*, a*)` iff `M ≼ M*`, `N ≼ N*`, `a* = a` and
@@ -4396,7 +4394,7 @@ K^{3,*} \neq \emptyset$.
 \end{definition}
 ```
 
-Lean (Frames.lean:2134):
+Lean (Frames.lean:2132):
 
 ```lean
 /-- Def 3.2.1 (precondition): `K^{3,*}` is closed under isomorphisms. -/
@@ -4428,7 +4426,7 @@ K^{3,*} \neq \emptyset$.
 \end{definition}
 ```
 
-Lean (Frames.lean:2139):
+Lean (Frames.lean:2137):
 
 ```lean
 /-- Def 3.2.1(1): `K^{3,*}` is dense with respect to `≼_bs`. -/
@@ -4459,7 +4457,7 @@ K^{3,*} \neq \emptyset$.
 \end{definition}
 ```
 
-Lean (Frames.lean:2144):
+Lean (Frames.lean:2142):
 
 ```lean
 /-- Def 3.2.1(2): `K^{3,*}` satisfies the existence property: for every `(M, N, a) ∈ K^{3,bs}`
@@ -4495,12 +4493,12 @@ $K^{3,*}$.
 \end{definition}
 ```
 
-Lean (Frames.lean:2154):
+Lean (Frames.lean:2152):
 
 ```lean
 -- AGENT-CHOICE (reading): the paper's condition "N_{α*} = ⋃{N_ε : ε < α}" has a free `α` and the
 -- decomposed model `M*` is never mentioned; we read it as `N_{α*} = M*` (and `ε ⪯ α*` as
--- `ε ≤ α*`). See NOTES.md.
+-- `ε ≤ α*`). See docs/METHOD.md.
 /-- Def 3.2.2: `⟨d_ε, N_ε : ε < α*⟩⌢⟨N_{α*}⟩` is a decomposition of `M*` over `M` by `K^{3,*}`:
 (1) `α* < λ⁺`, `N_ε ∈ K_λ` (`ε < α*`), (2) `⟨N_ε : ε ≤ α*⟩` increasing continuous,
 (3) `N₀ = M`, (4) `(N_ε, N_{ε+1}, d_ε) ∈ K^{3,*}`. -/
@@ -4536,7 +4534,7 @@ $K^{3,*}$.
 \end{definition}
 ```
 
-Lean (Frames.lean:2160):
+Lean (Frames.lean:2158):
 
 ```lean
 /-- Def 3.2.2: `M*` is decomposable by `K^{3,*}` over `M`. -/
@@ -4558,7 +4556,7 @@ reduced}\}.$$
 \end{definition}
 ```
 
-Lean (Frames.lean:2858):
+Lean (Frames.lean:2856):
 
 ```lean
 /-- Def 3.3.2: `(M, N, a) ∈ K^{3,bs}_λ` is reduced if `(M, N, a) ≼_bs (M*, N*, a)` implies
@@ -4578,7 +4576,7 @@ $\frak{s}$ is a semi-good $\lambda$-frame.
 \end{hypothesis}
 ```
 
-Lean (Frames.lean:3434):
+Lean (Frames.lean:3432):
 
 ```lean
 /-- Hypothesis 4.1.1: `s` is a semi-good `λ`-frame. -/
@@ -4587,7 +4585,7 @@ def Hyp_4_1_1 (s : Frame U L) (lam : Cardinal.{u}) : Prop := s.IsSemiGood lam
 
 ### `Amalg` — no paper item — encoding
 
-Lean (Frames.lean:3437):
+Lean (Frames.lean:3435):
 
 ```lean
 /-- ENCODING: an amalgamation `(f₁, f₂, M₃)`. -/
@@ -4621,7 +4619,7 @@ amalgamations over $M_0$, by $E_{M_0}$.
 \end{definition}
 ```
 
-Lean (Frames.lean:3442):
+Lean (Frames.lean:3440):
 
 ```lean
 /-- Def 4.1.2: for `M₀ ≼ M₁, M₂` in `K_λ` and amalgamations `A = (f₁ᵃ, f₂ᵃ, M₃ᵃ)`,
@@ -4649,7 +4647,7 @@ $tp(f_1(a),f_2[M_1],N_1)$ does not fork over $M$. A
 \end{definition}
 ```
 
-Lean (Frames.lean:3501):
+Lean (Frames.lean:3499):
 
 ```lean
 /-- The condition in Def 4.1.5 on an amalgamation `(f₁, f₂, N₁)` of `N` and `M₁` over `M`:
@@ -4673,7 +4671,7 @@ $tp(f_1(a),f_2[M_1],N_1)$ does not fork over $M$. A
 \end{definition}
 ```
 
-Lean (Frames.lean:3508):
+Lean (Frames.lean:3506):
 
 ```lean
 /-- Def 4.1.5: `K^{3,uq}`: triples `(M, N, a) ∈ K^{3,bs}` such that for every `M₁ ∈ K_λ` with
@@ -4703,7 +4701,7 @@ existence property.
 \end{hypothesis}
 ```
 
-Lean (Frames.lean:3676):
+Lean (Frames.lean:3674):
 
 ```lean
 /-- Hypothesis 5.1.1: (1) `s` is a semi-good `λ`-frame, (2) with the conjugation property,
@@ -4714,7 +4712,7 @@ def Hyp_5_1_1 (s : Frame U L) (lam : Cardinal.{u}) : Prop :=
 
 ### `QRel` — no paper item — encoding
 
-Lean (Frames.lean:3680):
+Lean (Frames.lean:3678):
 
 ```lean
 /-- ENCODING: a 4-place relation on models. -/
@@ -4756,7 +4754,7 @@ $R(M_{a,0},M_{a,\alpha^{*}},M_{b,0},M_{b,\alpha^{*}})$.
 \end{definition}
 ```
 
-Lean (Frames.lean:3688):
+Lean (Frames.lean:3686):
 
 ```lean
 /-- Def 5.2.1 (precondition): `R ⊆ ⁴(K_λ)`. -/
@@ -4798,7 +4796,7 @@ $R(M_{a,0},M_{a,\alpha^{*}},M_{b,0},M_{b,\alpha^{*}})$.
 \end{definition}
 ```
 
-Lean (Frames.lean:3698):
+Lean (Frames.lean:3696):
 
 ```lean
 /-- Def 5.2.1(b), monotonicity: if `R(M₀, M₁, M₂, M₃)`, `N₀ = M₀`, `Nₙ ≼ Mₙ ∧ N₀ ≼ Nₙ ≼ N₃`
@@ -4842,7 +4840,7 @@ K$ with $M\prec N$.
 \end{definition}
 ```
 
-Lean (Frames.lean:3712):
+Lean (Frames.lean:3710):
 
 ```lean
 /-- A joint embedding of `M, M'` over `A`, into a model of `K_λ` (Def 1.0.20(2)). -/
@@ -4863,7 +4861,7 @@ S^{bs}(M_0)$, then $tp(a,M_2,M_3)$ does not fork over $M_0$.
 \end{definition}
 ```
 
-Lean (Frames.lean:3815):
+Lean (Frames.lean:3813):
 
 ```lean
 /-- Def 5.2.6: `R` respects the frame `s`: if `R(M₀, M₁, M₂, M₃)` and `tp(a, M₀, M₁)` is basic,
@@ -4910,7 +4908,7 @@ for $NF^*(N_0,N_1,N_2,N_3)$.
 \end{definition}
 ```
 
-Lean (Frames.lean:3827):
+Lean (Frames.lean:3825):
 
 ```lean
 /-- Def 5.3.1: `⟨N_{1,i}, d_i : i < α*⟩⌢⟨N_{1,α*}⟩` (first witness) and `⟨N_{2,i} : i ≤ α*⟩`
@@ -4969,7 +4967,7 @@ for $NF^*(N_0,N_1,N_2,N_3)$.
 \end{definition}
 ```
 
-Lean (Frames.lean:3840):
+Lean (Frames.lean:3838):
 
 ```lean
 /-- Def 5.3.1: the relation `NF* = NF*_λ` on `⁴(K_λ)`. -/
@@ -4992,7 +4990,7 @@ $N_0=M_0, l<4\Rightarrow M_l\preceq N_l$
 \end{definition}
 ```
 
-Lean (Frames.lean:3846):
+Lean (Frames.lean:3844):
 
 ```lean
 /-- Def 5.3.2: `NF = NF_λ`: quadruples of models in `K_λ` with `M₀ ≼ M₁ ≼ M₃`, `M₀ ≼ M₂ ≼ M₃`
@@ -5030,7 +5028,7 @@ M_0 \ar[u]^{id} \ar[r]^{id} & M_2 \ar[u]^{id} \ar[r]^{f} & M_4
 \end{definition}
 ```
 
-Lean (Frames.lean:4675):
+Lean (Frames.lean:4673):
 
 ```lean
 /-- Def 5.4.1: `⊗⁻_R` for `R ⊆ ⁴(K_λ)`: (1) `R(M₀, M₁, M₂, M₃) → M₀ ≼ Mₙ ≼ M₃` (`n = 1, 2`);
@@ -5068,7 +5066,7 @@ $K^{3,uq}$ satisfies the existence property.
 \end{hypothesis}
 ```
 
-Lean (Frames.lean:8234):
+Lean (Frames.lean:8232):
 
 ```lean
 /-- Hypothesis 6.1.1: `s` is a semi-good `λ`-frame with conjugation and `K^{3,uq}` satisfies the
@@ -5095,7 +5093,7 @@ M_n=\bigcup\{N_{n,\alpha}:\alpha<\lambda^+\}$.
 \end{definition}
 ```
 
-Lean (Frames.lean:8244):
+Lean (Frames.lean:8242):
 
 ```lean
 /-- Def 6.1.2: `NF^(N₀, N₁, M₀, M₁)` iff (1) `Nₙ ∈ K_λ`, `Mₙ ∈ K_{λ⁺}`; (2) there are increasing
@@ -5126,7 +5124,7 @@ K_\lambda$ such that $\widehat{NF}(N_0,N_1,\allowbreak M_0,M_1)$.
 \end{definition}
 ```
 
-Lean (Frames.lean:8258):
+Lean (Frames.lean:8256):
 
 ```lean
 /-- Def 6.1.4: for `M₀ ≼ M₁` in `K_{λ⁺}`, `M₀ ≼^NF_{λ⁺} M₁` iff `NF^(N₀, N₁, M₀, M₁)` for some
@@ -5146,7 +5144,7 @@ We say $M\prec N$ when $M \preceq N$ and $M \neq N$.
 \end{definition}
 ```
 
-Lean (Frames.lean:8263):
+Lean (Frames.lean:8261):
 
 ```lean
 /-- `M₀ ≺^NF_{λ⁺} M₁`: `M₀ ≼^NF_{λ⁺} M₁` and `M₀ ≠ M₁` (Def 1.0.14 applied to `≼^NF`). -/
@@ -5155,7 +5153,7 @@ def ltNF (M₀ M₁ : Model U L) : Prop := s.leNF lam M₀ M₁ ∧ M₀ ≠ M�
 
 ### `Frame.nfKSys` *(not in the main statements)* — no paper item — unchanged
 
-Lean (Frames.lean:8266):
+Lean (Frames.lean:8264):
 
 ```lean
 /-- `(K_{λ⁺}, ≼^NF_{λ⁺})`. -/
@@ -5173,7 +5171,7 @@ $K^{3,uq}$ satisfies the existence property.
 \end{hypothesis}
 ```
 
-Lean (Frames.lean:11386):
+Lean (Frames.lean:11384):
 
 ```lean
 /-- Hypothesis 7.1.1 (= Hypothesis 6.1.1). -/
@@ -5191,7 +5189,7 @@ $\lambda$.
 \end{definition}
 ```
 
-Lean (Frames.lean:11393):
+Lean (Frames.lean:11391):
 
 ```lean
 /-- Def 7.1.2: `K^sat`, the class of saturated models in `λ⁺` over `λ`. -/
@@ -5200,7 +5198,7 @@ def Ksat : Set (Model U L) := {M | Saturated s.S lam M}
 
 ### `Frame.satKSys` — no paper item — unchanged
 
-Lean (Frames.lean:11396):
+Lean (Frames.lean:11394):
 
 ```lean
 /-- `(K^sat, ≼^NF_{λ⁺} ↾ K^sat)`. -/
@@ -5242,7 +5240,7 @@ alternating chain that both union to $M_1$.
 \end{definition}
 ```
 
-Lean (Frames.lean:11416):
+Lean (Frames.lean:11414):
 
 ```lean
 -- AGENT-CHOICE (reading): in (d), "realizes the non-forking extension of p" = the non-forking
@@ -5251,7 +5249,7 @@ Lean (Frames.lean:11416):
 -- only increasing in `K_λ`.
 -- DEVIATION (author-confirmed erratum): the paper requires all three sequences to be increasing
 -- continuous. Then the definition is unsatisfiable: at a limit point `δ ∈ E` of `E`, clauses (b),
--- (c) and continuity give `N_{1,δ} = N^⊕_{1,δ}`, contradicting (d). See NOTES.md, section C.
+-- (c) and continuity give `N_{1,δ} = N^⊕_{1,δ}`, contradicting (d). See docs/ERRATA.md.
 /-- Def 7.1.4: witnesses `⟨N_{0,α}⟩, ⟨N_{1,α}⟩` (`α < λ⁺`, increasing continuous in `K_λ`),
 `⟨N^⊕_{1,α}⟩` (`α < λ⁺`, increasing in `K_λ`) and a club `E` for `M₀ ≺⁺_{λ⁺} M₁`:
 (a) `Mₙ = ⋃ N_{n,α}`, (b) `α ∈ E → N_{0,α} ≼ N_{1,α} ≼ N^⊕_{1,α}`, (c) `α < β` in `E` →
@@ -5313,7 +5311,7 @@ alternating chain that both union to $M_1$.
 \end{definition}
 ```
 
-Lean (Frames.lean:11433):
+Lean (Frames.lean:11431):
 
 ```lean
 /-- Def 7.1.4: `M₀ ≺⁺_{λ⁺} M₁` (a relation on `K_{λ⁺}`). -/
@@ -5332,7 +5330,7 @@ $K^{3,uq}$ satisfies the existence property.
 \end{hypothesis}
 ```
 
-Lean (Frames.lean:14619):
+Lean (Frames.lean:14617):
 
 ```lean
 /-- Hypothesis 8.1.1 (= Hypothesis 6.1.1). -/
@@ -5353,7 +5351,7 @@ S^{bs}(N_1)$ does not fork over $N_0$, then for some element $d
 \end{definition}
 ```
 
-Lean (Frames.lean:14624):
+Lean (Frames.lean:14622):
 
 ```lean
 /-- Def 8.1.2: `M₀ ≼^⊗_{λ⁺} M₁` iff `M₀, M₁ ∈ K^sat`, `M₀ ≺ M₁` and for all `N₀, N₁ ∈ K_λ` with
@@ -5376,7 +5374,7 @@ $K^{3,uq}$ satisfies the existence property.
 \end{hypothesis}
 ```
 
-Lean (Frames.lean:17426):
+Lean (Frames.lean:17424):
 
 ```lean
 /-- Hypothesis 9.1.1 (= Hypothesis 6.1.1). -/
@@ -5397,7 +5395,7 @@ M_{\beta+1} \preceq^{NF}_{\lambda^+} M_{\gamma+1}$.
 \end{definition}
 ```
 
-Lean (Frames.lean:17430):
+Lean (Frames.lean:17428):
 
 ```lean
 /-- Def 9.1.2: an increasing sequence `⟨M_α : α < α*⟩` in `K_{λ⁺}` is `≼^NF`-increasing in the
@@ -5426,7 +5424,7 @@ defined}, $T(M)$ does not depend on the representation $\bar{M}$).
 \end{definition}
 ```
 
-Lean (Frames.lean:17436):
+Lean (Frames.lean:17434):
 
 ```lean
 /-- Def 9.1.3: `T(M̄) = {δ < λ^{+2} : ∃ α ∈ (δ, λ^{+2}), M_δ ⋠^NF M_α}`. -/
@@ -5453,7 +5451,7 @@ defined}, $T(M)$ does not depend on the representation $\bar{M}$).
 \end{definition}
 ```
 
-Lean (Frames.lean:17442):
+Lean (Frames.lean:17440):
 
 ```lean
 /-- Def 9.1.3: `T(M) = T(M̄)/D_{λ^{+2}}` equals `X/D_{λ^{+2}}`, for some representation `M̄` of `M`
@@ -5469,7 +5467,7 @@ def Frame.HasT (s : Frame U L) (lam : Cardinal.{u}) (M : Model U L) (X : Set Ord
 
 ### `StatCof` *(not in the main statements)* — no paper item — unchanged
 
-Lean (Frames.lean:17582):
+Lean (Frames.lean:17580):
 
 ```lean
 /-- `S^{λ^{+2}}_{λ⁺}`: stationary subsets of `λ^{+2}` all of whose elements have cofinality `λ⁺`. -/
@@ -5492,7 +5490,7 @@ satisfies smoothness.
 \end{definition}
 ```
 
-Lean (Frames.lean:18436):
+Lean (Frames.lean:18434):
 
 ```lean
 -- AGENT-CHOICE (reading): item 2 of Def 10.1.1 reads "satisfies smoothness" with no subject; we
@@ -5515,7 +5513,7 @@ conjugation.
 \end{hypothesis}
 ```
 
-Lean (Frames.lean:18441):
+Lean (Frames.lean:18439):
 
 ```lean
 /-- Hypothesis 10.1.2: `s` is a successful semi-good `λ`-frame with conjugation. -/
@@ -5525,7 +5523,7 @@ def Hyp_10_1_2 (s : Frame U L) (lam : Cardinal.{u}) : Prop :=
 
 ### `Frame.upKSys` — no paper item — unchanged
 
-Lean (Frames.lean:18449):
+Lean (Frames.lean:18447):
 
 ```lean
 /-- `((K^sat)^up, (≼^NF ↾ K^sat)^up)`. -/
@@ -5544,7 +5542,7 @@ K^{sat})^{up})}(a,M_0,M_1).$$
 \end{definition}
 ```
 
-Lean (Frames.lean:18454):
+Lean (Frames.lean:18452):
 
 ```lean
 -- (After the erratum in Def 1.0.22 the pool is the whole class `(K^sat)^up`; the cardinal
@@ -5576,7 +5574,7 @@ Definition \ref{forking for big models}.
 \end{definition}
 ```
 
-Lean (Frames.lean:18468):
+Lean (Frames.lean:18466):
 
 ```lean
 /-- Def 10.1.6(1): `S^{bs,+}(M) = {tp⁺(a, M, N) : M, N ∈ K^sat, M ≼^NF N, tp(a, M, N) ∈ S^bs_{>λ}}`
@@ -5608,7 +5606,7 @@ Definition \ref{forking for big models}.
 \end{definition}
 ```
 
-Lean (Frames.lean:18477):
+Lean (Frames.lean:18475):
 
 ```lean
 -- DEVIATION (encoding): Def 10.1.6(2) defines "tp⁺(a, M₁, M₂) does not fork over M₀"; as a
@@ -5643,7 +5641,7 @@ Definition \ref{forking for big models}.
 \end{definition}
 ```
 
-Lean (Frames.lean:18482):
+Lean (Frames.lean:18480):
 
 ```lean
 /-- Def 10.1.6: `s⁺ := ((K^sat)^up, (≼^NF ↾ K^sat)^up, S^{bs,+}, ⨿⁺)`. -/
@@ -5667,7 +5665,7 @@ $\eta:\lambda \to \lambda$ the set $\{\delta \in A:F(\eta
 \end{definition}
 ```
 
-Lean (Frames.lean:20824):
+Lean (Frames.lean:20822):
 
 ```lean
 -- DEVIATION (encoding): `^{<λ}λ` is encoded by pairs `(δ, η ↾ δ)` with `η ↾ δ` truncated to `0`
@@ -5698,7 +5696,7 @@ There is a sequence $\langle A_i:i<\mu \rangle$ such that $A_i
 \end{definition}
 ```
 
-Lean (Frames.lean:20835):
+Lean (Frames.lean:20833):
 
 ```lean
 -- AGENT-CHOICE: the preconditions "λ regular uncountable, I normal" are not part of the defined
@@ -5724,7 +5722,7 @@ dense with respect to $\preceq_{bs}$, then $I(\lambda^{+2},K)=2^{\lambda^{+2}}$.
 \end{conjecture}
 ```
 
-Lean (Frames.lean:20846):
+Lean (Frames.lean:20844):
 
 ```lean
 -- DEVIATION (author-confirmed erratum): the paper has "WDmId(λ⁺) is not saturated in λ⁺"; the
