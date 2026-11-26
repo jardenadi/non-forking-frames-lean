@@ -4,7 +4,8 @@ This note explains how the formalization was made and how its fidelity to the pa
 checked. The paper is A. Jarden and S. Shelah, "Non-forking frames in abstract elementary
 classes", Ann. Pure Appl. Logic 164 (2013), 135–191; the text formalized is arXiv:0901.0852v2.
 The formalization was written by an LLM agent (Claude) working with the first author of the
-paper, who reviewed the statements and decided every question of interpretation.
+paper. The author reviewed the main theorems and the definitions they depend on, and decided
+every question of interpretation that was put to him.
 
 ## Two stages: statements first, then proofs
 
@@ -12,17 +13,23 @@ paper, who reviewed the statements and decided every question of interpretation.
 * Every definition and every statement of the paper was written in Lean, with all proofs left
   as `sorry`. Each one has a docstring with its number in the compiled paper. Where the Lean
   wording departs from the paper, the docstring also quotes the original text.
-* The author checked the statements against the paper. Where a statement is false or incomplete
-  as written, it was not silently corrected. The problem was reported, and the author decided
-  the correction (an erratum of the paper) or the reading. These decisions are in
-  [`ERRATA.md`](ERRATA.md).
-* After this review the statements were frozen.
+* The author's own fidelity check covered the main theorems and the definitions they depend
+  on (see [`FIDELITY_REVIEW.md`](FIDELITY_REVIEW.md)). The agent checked the other statements.
+  Questions of interpretation were put to the author, who decided them.
+* Where a statement is false or incomplete as written, it was not silently corrected. The
+  problem was reported, and the author decided the correction (an erratum of the paper) or the
+  reading. These decisions are in [`ERRATA.md`](ERRATA.md).
 
 **Stage 2 (proofs).**
-* The proofs follow the paper's proofs. Auxiliary lemmas that are not in the paper have
-  docstrings starting `AUX: not in paper`.
-* A frozen statement was changed only when a proof showed that it was needed, for example a
-  missing hypothesis. Each such change is tagged in the source (see below) and was reviewed.
+* The proofs mostly follow the paper's proofs; where a different route was taken, this is
+  noted in the source. Auxiliary lemmas that are not in the paper have docstrings starting
+  `AUX: not in paper`.
+* From 2026-11-09 the change policy was widened (author's decision). Only the main theorems
+  (Thm 1.0.1, 1.0.2, 11.1.1, 11.1.7) stayed frozen. Other statements and definitions could be
+  changed when a proof needed it, for example to add a missing hypothesis.
+* Each change is tagged in the source (see below) and listed in
+  [`FIDELITY_REVIEW.md`](FIDELITY_REVIEW.md). The author reviewed the changes that affect the
+  dependency tree of the main theorems.
 * At the end, statements that were still unproved and that no proof uses were removed. They are
   listed, with the reason, in [`UNPROVED_STATEMENTS.md`](UNPROVED_STATEMENTS.md).
 * The final files contain no `sorry`, no added axiom and no `native_decide`.
@@ -32,7 +39,7 @@ paper, who reviewed the statements and decided every question of interpretation.
 Every place where the formalization departs from the literal text of the paper carries a
 comment tag next to the declaration, with the reason.
 
-* `PROOF-STAGE CHANGE`: a frozen statement or definition was changed during Stage 2, typically
+* `PROOF-STAGE CHANGE`: a statement or definition was changed during Stage 2, typically
   by adding a hypothesis that the paper leaves implicit (for example `ℵ₀ ≤ λ`).
 * `DEVIATION (author-confirmed erratum)` / `DEVIATION (typo fixed to evident intent)`: the
   paper's text is wrong, and the author confirmed the correction.
