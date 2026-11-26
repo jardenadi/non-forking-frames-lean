@@ -1,0 +1,19 @@
+name = "NonForkingFrames"
+version = "0.1.0"
+keywords = ["math", "model theory", "abstract elementary classes"]
+defaultTargets = ["NonForkingFrames"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+# Mathlib v4.34.1, pinned to the exact commit.
+rev = "d13f23b723b8a846827a245b89c10fc7d3f11612"
+
+[[lean_lib]]
+name = "NonForkingFrames"
