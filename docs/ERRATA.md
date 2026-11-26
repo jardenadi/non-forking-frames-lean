@@ -757,7 +757,8 @@ theorems.
 
 **(b) What went wrong with fidelity.**
 The ambient set was introduced by the agent as an encoding decision, without a flag marking it as
-an addition that goes beyond the paper, and without asking the author. Its first description, in
+an addition that goes beyond the paper, and without asking the author first. The author found it
+only during the fidelity check. Its first description, in
 the documentation, said only that a model is a structure "whose universe is a subset of a fixed
 ambient type `U`", "so that `M ⊆ N`, `M ∩ N`, `N - M` and unions of chains are literal" (working
 notes, B.1: "a subset of an ambient type `U`"); it did not say that `U` carries no structure, and it did

@@ -1,4 +1,5 @@
-# Output of #print axioms for the main theorems (lake env lean on a file that imports NonForkingFrames
+# Output of #print axioms for the main theorems (Thm 1.0.1, 1.0.2), their Section 11 forms
+# (Thm 11.1.1, 11.1.7) and the variant thm_1_0_2_muUnif (lake env lean on a file that imports NonForkingFrames
 # and runs #print axioms on each name below), 2026-11-26, Lean v4.34.1, Mathlib d13f23b7.
 'SemiGoodFrames.thm_1_0_1' depends on axioms: [propext, Classical.choice, Quot.sound]
 'SemiGoodFrames.thm_1_0_2' depends on axioms: [propext, Classical.choice, Quot.sound]

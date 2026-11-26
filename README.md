@@ -1,3 +1,5 @@
+[![CI](https://github.com/jardenadi/non-forking-frames-lean/actions/workflows/ci.yml/badge.svg)](https://github.com/jardenadi/non-forking-frames-lean/actions/workflows/ci.yml)
+
 # Non-forking frames in abstract elementary classes: a Lean 4 formalization
 
 A formalization of
@@ -24,9 +26,11 @@ lines, unused variables).
 
 ## Where to look
 
-* `NonForkingFrames/MainStatements.lean`: **the main statements, written out in full.** Each main
-  theorem (Thm 1.0.1, Thm 1.0.2, and Thm 1.0.2 with `μ_unif` as in [Sh:88r]) is restated as an
-  `example` and checked against the proved theorem with reducible transparency. If a written
+* `NonForkingFrames/MainStatements.lean`: **the main statements, written out in full.** The
+  main theorems of the paper are Thm 1.0.1 and Thm 1.0.2 (`thm_1_0_1`, `thm_1_0_2`). The file
+  also has `thm_1_0_2_muUnif`, a variant of Thm 1.0.2 with `μ_unif` defined as in [Sh:88r]; it is
+  not a main theorem. Each statement is restated as an `example` and checked against the proved
+  theorem with reducible transparency. If a written
   statement differs from the proved one, the file does not compile. The definitions behind the
   statements are shown with `#print`, grouped by topic.
 * `NonForkingFrames/AEC.lean`: the general infrastructure (models, AECs, embeddings, chains,
@@ -59,11 +63,17 @@ lines, unused variables).
 
   Several errata are hypotheses that the author regarded as obvious and did not write.
 * **The ambient type `U`.** Every model is a structure whose universe is a subset of one fixed
-  type `U`. `U` carries no structure, and the structures of two models need not agree on their
-  intersection. This makes `M ⊆ N`, `M ∩ N`, `N - M` and unions of chains literal. Theorems that
-  involve a cardinal `λ` take the encoding hypothesis `Room U λ`: `#U` is a strong limit above
-  `λ`, so `U` has room for every model the paper constructs. This is an encoding device, not a
-  hypothesis of the paper (see `docs/ERRATA.md`, D.1).
+  type `U`. Theorems that involve a cardinal `λ` take the hypothesis `Room U λ`: `#U` is a
+  strong limit above `λ`, so `U` has room for every model the paper constructs.
+  * The agent introduced `U` and `Room U λ` without first asking the author. The author found
+    them only during the fidelity check.
+  * This is a good example of why a human fidelity check is needed. An encoding choice made
+    silently can change what the theorems say. For example, if all models were substructures of
+    one fixed structure, that would give amalgamation, which the paper does not assume.
+  * In the end, `U` is only an encoding device. `U` carries no structure, and the structures of
+    two models need not agree on their intersection. It only makes `M ⊆ N`, `M ∩ N`, `N - M` and
+    unions of chains literal.
+  * See `docs/ERRATA.md`, D.1.
 
 ## Scope
 

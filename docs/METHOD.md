@@ -82,12 +82,19 @@ paper quotes, the field's docstring says so.
 
 ## The ambient type `U`
 
-Every model is a structure whose universe is a subset of one fixed type `U`. The type carries no
-structure, and two models need not agree on their intersection. This makes `M ⊆ N`, `M ∩ N`,
-`N - M` and unions of chains literal, as in the paper. Theorems that involve a cardinal `λ` take
-the hypothesis `Room U λ` (`#U` is a strong limit cardinal above `λ`), so that every model the
-paper builds has copies inside `U`. This is an encoding device, not a hypothesis of the paper.
-[`ERRATA.md`](ERRATA.md), D.1 records it as an example of how hard checking fidelity can be.
+Every model is a structure whose universe is a subset of one fixed type `U`. Theorems that
+involve a cardinal `λ` take the hypothesis `Room U λ` (`#U` is a strong limit cardinal above
+`λ`), so that every model the paper builds has copies inside `U`.
+
+The agent introduced `U` and `Room U λ` without first asking the author, and the author found
+them only during the fidelity check. This shows why a fidelity check by a human is needed: an
+encoding choice made silently can change what the theorems say. If, for example, every model
+were a substructure of one fixed structure, this would give amalgamation, which the paper does
+not assume.
+
+In the end `U` is only an encoding device. The type carries no structure, and two models need
+not agree on their intersection. It only makes `M ⊆ N`, `M ∩ N`, `N - M` and unions of chains
+literal, as in the paper. See [`ERRATA.md`](ERRATA.md), D.1.
 
 ## Main decisions (details in `ERRATA.md`)
 
